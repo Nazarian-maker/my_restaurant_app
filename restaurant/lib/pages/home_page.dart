@@ -54,7 +54,11 @@ class HomePage extends StatelessWidget {
                 child: Text('Каталог меню'),
               ),
               ...productData.items.map((value) {
-                return CatalogListTile(imgUrl: value.imgUrl);
+                return CatalogListTile(
+                    imgUrl: value.imgUrl,
+                    title: value.title,
+                    price: value.price,
+                );
               }).toList(),
             ],
           ),

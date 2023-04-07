@@ -72,3 +72,5 @@ class ProductDataProvider with ChangeNotifier {
   Product getElementById(String id) =>
       _items.singleWhere((value) => value.id == id);
 }
+
+
