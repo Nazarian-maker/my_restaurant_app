@@ -74,7 +74,7 @@ class ItemPage extends StatelessWidget {
                         ? Column(
                             children: [
                               MaterialButton(
-                                  color: Color(0xFFCCFF90),
+                                  color: Color(0xFF8BC34A),
                                   child: Text('Перейти в корзину '),
                                   onPressed: () {
                                     Navigator.of(context)

@@ -8,7 +8,7 @@ class CatalogListTile extends StatelessWidget {
   final imgUrl;
   final title;
   final price;
-  final String komboName = "Нормас комбо";
+  final String komboName = "комбо";
   CatalogListTile({Key? key, this.imgUrl, this.title, this.price})
       : super(key: key);
 
@@ -37,11 +37,11 @@ class CatalogListTile extends StatelessWidget {
               ),
             ),
           ),
-          title: Text('${komboName} ${title}'),
+          title: Text('${title} ${komboName}'),
           subtitle: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Цена ${price}'),
+              Text('Цена ${price * 2}'),
               // IconButton(
               //   // onPressed: () {
               //   //   Provider.of<CartDataProvider>(context, listen: false).addItem(

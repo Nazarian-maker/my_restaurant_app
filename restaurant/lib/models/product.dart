@@ -27,16 +27,16 @@ class ProductDataProvider with ChangeNotifier {
       price: 166.99,
       imgUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUf2ez101D52qP1yId59ONKsbwpEB6uO4mUA&usqp=CAU',
-      color: '0XFFCCFF90',
+      color: '0xFFFFC107',
     ),
     Product(
       id: '2',
-      title: 'Биг Хит',
+      title: 'Биг Смоук',
       description: 'Бургер с двумя бифштексами и т.д.',
-      price: 166.99,
+      price: 186.99,
       imgUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUf2ez101D52qP1yId59ONKsbwpEB6uO4mUA&usqp=CAU',
-      color: '0XFFCCFF90',
+      'https://cdn.bahroma1.ru/goods/grandburger_6366d239d48cc.jpg',
+      color: '0xFFFFC107',
     ),
     Product(
       id: '3',
@@ -45,16 +45,16 @@ class ProductDataProvider with ChangeNotifier {
       price: 166.99,
       imgUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUf2ez101D52qP1yId59ONKsbwpEB6uO4mUA&usqp=CAU',
-      color: '0XFFCCFF90',
+      color: '0xFFFFC107',
     ),
     Product(
       id: '4',
-      title: 'Биг Хит',
+      title: 'Биг Смоук',
       description: 'Бургер с двумя бифштексами и т.д.',
-      price: 166.99,
+      price: 186.99,
       imgUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUf2ez101D52qP1yId59ONKsbwpEB6uO4mUA&usqp=CAU',
-      color: '0XFFCCFF90',
+      'https://cdn.bahroma1.ru/goods/grandburger_6366d239d48cc.jpg',
+      color: '0xFFFFC107',
     ),
     Product(
       id: '5',
@@ -63,7 +63,7 @@ class ProductDataProvider with ChangeNotifier {
       price: 166.99,
       imgUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUf2ez101D52qP1yId59ONKsbwpEB6uO4mUA&usqp=CAU',
-      color: '0XFFCCFF90',
+      color: '0xFFFFC107',
     ),
   ];
 

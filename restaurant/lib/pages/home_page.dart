@@ -21,8 +21,8 @@ class HomePage extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(35),
-              bottomLeft: Radius.circular(35),
+              // bottomRight: Radius.circular(35),
+              // bottomLeft: Radius.circular(35),
             ),
           ),
           child: ListView(

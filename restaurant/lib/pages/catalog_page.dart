@@ -20,10 +20,9 @@ class ItemCatalog extends StatelessWidget {
           childAspectRatio: 1,
           children: [
             _buildItem(imgUrl),
-            _buildItem(imgUrl),
-            _buildItem(imgUrl),
-            _buildItem(imgUrl),
-            _buildItem(imgUrl),
+            _buildItem('https://darpizza.com/image/cache/catalog/free-412x391.png'),
+            _buildItem('https://blackstarburger74.winmon.ru/upload/61b74906-de95-e486-3630-5e6685a502b2_image_c'),
+            _buildItem('https://mcdonaldsmenu.ru/image/cache/catalog/photo/787268637-sous-syrnyj-600x600.jpg'),
           ],
         ),
       ),
@@ -44,7 +43,8 @@ class ItemCatalog extends StatelessWidget {
                 spreadRadius: 3.0,
                 blurRadius: 5.0),
           ],
-          color: Colors.lime,
+          color: Colors.white,
         ),
       );
 }
+
