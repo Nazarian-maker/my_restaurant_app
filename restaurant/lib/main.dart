@@ -4,6 +4,9 @@ import 'package:restaurant/models/cart.dart';
 import 'package:restaurant/models/product.dart';
 import 'package:restaurant/pages/home_page.dart';
 import 'package:provider/provider.dart';
+import 'package:restaurant/widgets/admin_auth.dart';
+import 'package:restaurant/widgets/auth_widget.dart';
+import 'package:restaurant/widgets/waiter_auth.dart';
 
 void main() => runApp(MyApp());
 
@@ -30,7 +33,12 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)
               .copyWith(background: Colors.white),
         ),
-        home: HomePage(),
+        routes: {
+          '/waiter_auth': (context) => WaiterAuth(),
+          '/admin_auth': (context) => AdminAuth(),
+        },
+        home: AuthWidget(),
+        // HomePage(),
       ),
     );
   }
