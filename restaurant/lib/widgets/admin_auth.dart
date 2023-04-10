@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant/pages/home_page.dart';
 
 class AdminAuth extends StatefulWidget {
   const AdminAuth({Key? key}) : super(key: key);
@@ -20,6 +21,7 @@ class _AdminAuthState extends State<AdminAuth> {
 
     if (email == 'admin@mail.ru' && password == 'admin' || pin == 'admin') {
       errorText = null;
+      Navigator.of(context).pushNamed('/home');
     } else {
       errorText = 'Неверный пин, логин или пароль!';
     }

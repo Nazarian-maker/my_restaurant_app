@@ -34,10 +34,13 @@ class MyApp extends StatelessWidget {
               .copyWith(background: Colors.white),
         ),
         routes: {
+          '/': (context) => AuthWidget(),
           '/waiter_auth': (context) => WaiterAuth(),
           '/admin_auth': (context) => AdminAuth(),
+          '/home': (context) => HomePage(),
         },
-        home: AuthWidget(),
+        initialRoute: '/',
+        // home: AuthWidget(),
         // HomePage(),
       ),
     );
