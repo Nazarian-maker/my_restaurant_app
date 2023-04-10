@@ -4,8 +4,8 @@ import 'package:restaurant/models/cart.dart';
 import 'package:restaurant/models/product.dart';
 import 'package:restaurant/pages/home_page.dart';
 import 'package:provider/provider.dart';
+import 'package:restaurant/pages/splash_screen.dart';
 import 'package:restaurant/widgets/admin_auth.dart';
-import 'package:restaurant/widgets/auth_widget.dart';
 import 'package:restaurant/widgets/waiter_auth.dart';
 
 void main() => runApp(MyApp());
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
               .copyWith(background: Colors.white),
         ),
         routes: {
-          '/': (context) => AuthWidget(),
+          '/': (context) => SplashScreen(),
           '/waiter_auth': (context) => WaiterAuth(),
           '/admin_auth': (context) => AdminAuth(),
           '/home': (context) => HomePage(),
