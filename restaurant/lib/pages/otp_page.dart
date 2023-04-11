@@ -49,6 +49,7 @@ class _OptScreenState extends State<OptScreen> {
   );
 
   int pinIndex = 0;
+  String? errorText = null;
 
   @override
   Widget build(BuildContext context) {
@@ -166,14 +167,12 @@ class _OptScreenState extends State<OptScreen> {
                       child: SizedBox(),
                     ),
                   ),
-
                   KeyboardNumber(
                     n: 0,
                     onPressed: () {
                       pinIndexSetup("0");
                     },
                   ),
-
                   Container(
                     width: 60.0,
                     child: MaterialButton(
@@ -198,8 +197,9 @@ class _OptScreenState extends State<OptScreen> {
   }
 
   clearPin() {
-    if(pinIndex == 0) pinIndex = 0;
-    else if(pinIndex == 4) {
+    if (pinIndex == 0)
+      pinIndex = 0;
+    else if (pinIndex == 4) {
       setPin(pinIndex, "");
       currentPin[pinIndex - 1] = "";
       pinIndex--;
@@ -211,9 +211,9 @@ class _OptScreenState extends State<OptScreen> {
   }
 
   pinIndexSetup(String text) {
-
-    if(pinIndex == 0) pinIndex = 1;
-    else if(pinIndex < 4) pinIndex++;
+    if (pinIndex == 0)
+      pinIndex = 1;
+    else if (pinIndex < 4) pinIndex++;
 
     setPin(pinIndex, text);
     currentPin[pinIndex - 1] = text;
@@ -223,11 +223,11 @@ class _OptScreenState extends State<OptScreen> {
       strPin += e;
     });
 
-    if(pinIndex == 4) print(strPin);
+    if (pinIndex == 4) print(strPin);
   }
 
   setPin(int n, String text) {
-    switch(n) {
+    switch (n) {
       case 1:
         pinOneController.text = text;
         break;
@@ -241,6 +241,19 @@ class _OptScreenState extends State<OptScreen> {
         pinFourController.text = text;
         break;
     }
+
+    final one = pinOneController.text;
+    final two = pinTwoController.text;
+    final three = pinThreeController.text;
+    final four = pinFourController.text;
+
+    if (one == '0' && two == '0' && three == '0' && four == '0') {
+      errorText = null;
+      Navigator.of(context).pushNamed('/home');
+    } else {
+      errorText = 'Неверный пин код!';
+    }
+    setState(() {});
   }
 
   buildPinRow() {
@@ -268,13 +281,32 @@ class _OptScreenState extends State<OptScreen> {
   }
 
   buildSecurityText() {
-    return Text(
-      'Security PIN',
-      style: TextStyle(
-        color: Colors.white70,
-        fontSize: 21.0,
-        fontWeight: FontWeight.bold,
-      ),
+    final error = this.errorText;
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        if (error != null) ...[
+          Text(
+            error,
+            style: TextStyle(
+              fontSize: 20.0,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+        ],
+
+        Text(
+          'Security PIN',
+          style: TextStyle(
+            color: Colors.white70,
+            fontSize: 21.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
     );
   }
 

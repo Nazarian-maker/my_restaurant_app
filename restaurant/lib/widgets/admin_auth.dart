@@ -10,19 +10,20 @@ class AdminAuth extends StatefulWidget {
 class _AdminAuthState extends State<AdminAuth> {
   final _loginTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
-  final _pinTextController = TextEditingController();
   String? errorText = null;
 
   void _auth() {
     final email = _loginTextController.text;
     final password = _passwordTextController.text;
-    final pin = _pinTextController.text;
 
-    if (email == 'admin@mail.ru' && password == 'admin' || pin == 'admin') {
+    if (email == 'admin@mail.ru' && password == 'admin') {
       errorText = null;
-      Navigator.of(context).pushNamed('/home');
+      FocusScope.of(context).unfocus();
+      Future.delayed(const Duration(seconds: 1), () {
+        Navigator.of(context).pushNamed('/home');
+      });
     } else {
-      errorText = 'Неверный пин, логин или пароль!';
+      errorText = 'Неверный логин или пароль!';
     }
 
     setState(() {});
@@ -41,7 +42,6 @@ class _AdminAuthState extends State<AdminAuth> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
             if (errorText != null) ...[
               Text(
                 errorText,
@@ -109,7 +109,10 @@ class _AdminAuthState extends State<AdminAuth> {
               children: [
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/pin_page');
+                    FocusScope.of(context).unfocus();
+                    Future.delayed(const Duration(seconds: 1), () {
+                      Navigator.of(context).pushNamed('/pin_page');
+                    });
                   },
                   child: Text('Войти по пинкоду'),
                 ),
