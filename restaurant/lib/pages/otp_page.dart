@@ -249,7 +249,7 @@ class _OptScreenState extends State<OptScreen> {
 
     if (one == '0' && two == '0' && three == '0' && four == '0') {
       errorText = null;
-      Navigator.of(context).pushNamed('/home');
+      Navigator.pushNamedAndRemoveUntil(context, '/home',(route) => false);
     } else {
       errorText = 'Неверный пин код!';
     }
