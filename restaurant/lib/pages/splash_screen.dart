@@ -8,16 +8,18 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-      splash: Column(
-        children: [
-          Image(
-            image: AssetImage('assets/from.png'),
-          ),
-        ],
+      splash: SingleChildScrollView(
+        child: Column(
+          children: [
+            Image(
+              image: AssetImage('assets/from.png'),
+            ),
+          ],
+        ),
       ),
       backgroundColor: Colors.amber,
       nextScreen: const AuthWidget(),
-      splashIconSize: 450,
+      splashIconSize: 550,
       splashTransition: SplashTransition.slideTransition,
     );
   }

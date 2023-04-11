@@ -4,6 +4,7 @@ import 'package:restaurant/models/cart.dart';
 import 'package:restaurant/models/product.dart';
 import 'package:restaurant/pages/home_page.dart';
 import 'package:provider/provider.dart';
+import 'package:restaurant/pages/otp_page.dart';
 import 'package:restaurant/pages/splash_screen.dart';
 import 'package:restaurant/widgets/admin_auth.dart';
 import 'package:restaurant/widgets/waiter_auth.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Сытно и точка!',
         theme: ThemeData(
           textTheme: GoogleFonts.marmeladTextTheme(
@@ -38,6 +40,7 @@ class MyApp extends StatelessWidget {
           '/waiter_auth': (context) => WaiterAuth(),
           '/admin_auth': (context) => AdminAuth(),
           '/home': (context) => HomePage(),
+          '/pin_page': (context) => PinPage(),
         },
         initialRoute: '/',
         // home: AuthWidget(),
