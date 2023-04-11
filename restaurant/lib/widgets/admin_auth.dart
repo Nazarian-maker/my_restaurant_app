@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/pages/home_page.dart';
 
 class AdminAuth extends StatefulWidget {
   const AdminAuth({Key? key}) : super(key: key);
@@ -108,6 +107,20 @@ class _AdminAuthState extends State<AdminAuth> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/pin_page');
+                  },
+                  child: Text('Войти по пинкоду'),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
                 ElevatedButton(
                   onPressed: _auth,
                   child: Text('Войти'),
@@ -118,12 +131,6 @@ class _AdminAuthState extends State<AdminAuth> {
                 TextButton(
                   onPressed: null,
                   child: Text('Сбросить пароль'),
-                ),
-                OutlinedButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/pin_page');
-                    },
-                    child: Text('Войти по пинкоду'),
                 ),
               ],
             ),

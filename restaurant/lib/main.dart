@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:restaurant/pages/otp_page.dart';
 import 'package:restaurant/pages/splash_screen.dart';
 import 'package:restaurant/widgets/admin_auth.dart';
-import 'package:restaurant/widgets/waiter_auth.dart';
 
 void main() => runApp(MyApp());
 
@@ -37,7 +36,6 @@ class MyApp extends StatelessWidget {
         ),
         routes: {
           '/': (context) => SplashScreen(),
-          '/waiter_auth': (context) => WaiterAuth(),
           '/admin_auth': (context) => AdminAuth(),
           '/home': (context) => HomePage(),
           '/pin_page': (context) => PinPage(),

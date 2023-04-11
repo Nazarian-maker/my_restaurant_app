@@ -63,7 +63,7 @@ class _OptScreenState extends State<OptScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  buildSecurityTExt(),
+                  buildSecurityText(),
                   SizedBox(
                     height: 40.0,
                   ),
@@ -267,7 +267,7 @@ class _OptScreenState extends State<OptScreen> {
     );
   }
 
-  buildSecurityTExt() {
+  buildSecurityText() {
     return Text(
       'Security PIN',
       style: TextStyle(

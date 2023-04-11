@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/widgets/admin_auth.dart';
-import 'package:restaurant/widgets/waiter_auth.dart';
 
 class AuthWidget extends StatefulWidget {
   const AuthWidget({Key? key}) : super(key: key);
@@ -58,7 +56,7 @@ class _AuthWidgetState extends State<AuthWidget> {
                       backgroundColor: MaterialStateProperty.all(Colors.amber),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/waiter_auth');
+                      Navigator.pushNamed(context, '/pin_page');
                     },
                     child: Text(
                       'Официант',
