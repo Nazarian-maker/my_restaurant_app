@@ -17,6 +17,14 @@ class PersonAccount extends StatelessWidget {
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         title: Text('Личный кабинет'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(context, '/auth', (route) => false);
+              },
+              icon: Icon(Icons.exit_to_app),
+          ),
+        ],
       ),
       body: Column(
         children: [
