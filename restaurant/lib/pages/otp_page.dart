@@ -247,12 +247,14 @@ class _OptScreenState extends State<OptScreen> {
     final three = pinThreeController.text;
     final four = pinFourController.text;
 
+    // if(four != '0') {
+    //   errorText = null;
+    // } else {
+    //   errorText = 'Неверный пин код!';
+    // }
     if (one == '0' && two == '0' && three == '0' && four == '0') {
-      errorText = null;
       Navigator.pushNamedAndRemoveUntil(context, '/home',(route) => false);
-    } else {
-      errorText = 'Неверный пин код!';
-    }
+    } 
     setState(() {});
   }
 
@@ -285,18 +287,18 @@ class _OptScreenState extends State<OptScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        if (error != null) ...[
-          Text(
-            error,
-            style: TextStyle(
-              fontSize: 20.0,
-              color: Colors.black,
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-        ],
+        // if (error != null) ...[
+        //   Text(
+        //     error,
+        //     style: TextStyle(
+        //       fontSize: 20.0,
+        //       color: Colors.black,
+        //     ),
+        //   ),
+        //   SizedBox(
+        //     height: 20,
+        //   ),
+        // ],
 
         Text(
           'Security PIN',

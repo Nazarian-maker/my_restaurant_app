@@ -38,7 +38,12 @@ class HomePage extends StatelessWidget {
                     title: Text('Меню нашего ресторана',
                         style:
                             TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                    trailing: Icon(Icons.restaurant),
+                    trailing: IconButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/person_acc');
+                        },
+                        icon: Icon(Icons.person),
+                    ),
                   ),
                 ),
                 Container(
