@@ -62,6 +62,9 @@ class _PinPageState extends State<PinPage> {
                 height: 20.0,
               ),
               PinCodeTextField(
+                textStyle: TextStyle(
+                  color: Colors.white,
+                ),
                 keyboardType: TextInputType.number,
                 autoFocus: false,
                 controller: textEditingController,
