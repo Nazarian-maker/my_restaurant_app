@@ -84,23 +84,6 @@ class _AdminAuthState extends State<AdminAuth> {
                     EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               ),
             ),
-            // SizedBox(
-            //   height: 20,
-            // ),
-            // Text('Или войдите через пинкод'),
-            // SizedBox(
-            //   height: 20,
-            // ),
-            // TextField(
-            //   controller: _pinTextController,
-            //   obscureText: true,
-            //   decoration: InputDecoration(
-            //     border: OutlineInputBorder(),
-            //     isCollapsed: true,
-            //     contentPadding:
-            //         EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            //   ),
-            // ),
             SizedBox(
               height: 20,
             ),
