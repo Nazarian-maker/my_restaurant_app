@@ -18,7 +18,7 @@ class BottomBar extends StatelessWidget {
       child: Container(
         height: 60.0,
         decoration: BoxDecoration(
-          color: Colors.lightGreen,
+          color: Colors.grey.shade400,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

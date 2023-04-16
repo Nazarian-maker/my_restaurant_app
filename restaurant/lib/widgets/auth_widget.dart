@@ -21,7 +21,7 @@ class _AuthWidgetState extends State<AuthWidget> {
           width: 300,
           height: 150,
           decoration: BoxDecoration(
-            color: Colors.lightGreen,
+            color: Colors.grey.shade400,
             borderRadius: BorderRadius.circular(30),
           ),
           child: Column(
@@ -39,7 +39,7 @@ class _AuthWidgetState extends State<AuthWidget> {
                   ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(Colors.amber),
+                            MaterialStateProperty.all(Colors.yellow.shade600),
                       ),
                       onPressed:() {
                         Navigator.pushNamed(context, '/admin_auth');
@@ -53,7 +53,7 @@ class _AuthWidgetState extends State<AuthWidget> {
                   ),
                   ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.amber),
+                      backgroundColor: MaterialStateProperty.all(Colors.yellow.shade600),
                     ),
                     onPressed: () {
                       Navigator.pushNamed(context, '/pin_page');

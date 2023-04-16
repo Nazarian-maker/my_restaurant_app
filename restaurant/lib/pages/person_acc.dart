@@ -31,7 +31,7 @@ class PersonAccount extends StatelessWidget {
                   backgroundColor: Colors.grey,
                   child: CircleAvatar(
                     radius: 50,
-                    backgroundColor: Colors.lightGreen,
+                    backgroundColor: Colors.yellow.shade600,
                     child: Text(
                       'User',
                       style: TextStyle(

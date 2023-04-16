@@ -17,7 +17,7 @@ class SplashScreen extends StatelessWidget {
           ],
         ),
       ),
-      backgroundColor: Colors.amber,
+      backgroundColor: Colors.yellow,
       nextScreen: const AuthWidget(),
       splashIconSize: 550,
       splashTransition: SplashTransition.slideTransition,

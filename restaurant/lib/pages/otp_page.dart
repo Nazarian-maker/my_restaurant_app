@@ -20,13 +20,13 @@ class _PinPageState extends State<PinPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Экран авторизации'),
-        backgroundColor: Colors.deepOrangeAccent,
+        backgroundColor: Colors.yellow,
       ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Colors.deepOrangeAccent,
+              Colors.blue.shade800,
               Colors.deepPurple,
             ],
           ),

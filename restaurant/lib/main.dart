@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           textTheme: GoogleFonts.marmeladTextTheme(
             Theme.of(context).textTheme,
           ),
-          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey)
               .copyWith(background: Colors.white),
         ),
         routes: {

@@ -39,7 +39,7 @@ class CartPage extends StatelessWidget {
                       onPressed: () {
                         cartData.clear();
                       },
-                      color: Colors.amber,
+                      color: Colors.yellow.shade600,
                       child: Text('Купить!'),
                     ),
                   ],

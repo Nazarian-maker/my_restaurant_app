@@ -27,7 +27,7 @@ class ProductDataProvider with ChangeNotifier {
       price: 166.99,
       imgUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUf2ez101D52qP1yId59ONKsbwpEB6uO4mUA&usqp=CAU',
-      color: '0xFFFFC107',
+      color: '0xFFFDD835',
     ),
     Product(
       id: '2',
@@ -36,7 +36,7 @@ class ProductDataProvider with ChangeNotifier {
       price: 186.99,
       imgUrl:
       'https://cdn.bahroma1.ru/goods/grandburger_6366d239d48cc.jpg',
-      color: '0xFFFFC107',
+      color: '0xFFFDD835',
     ),
     Product(
       id: '3',
@@ -45,7 +45,7 @@ class ProductDataProvider with ChangeNotifier {
       price: 166.99,
       imgUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUf2ez101D52qP1yId59ONKsbwpEB6uO4mUA&usqp=CAU',
-      color: '0xFFFFC107',
+      color: '0xFFFDD835',
     ),
     Product(
       id: '4',
@@ -54,7 +54,7 @@ class ProductDataProvider with ChangeNotifier {
       price: 186.99,
       imgUrl:
       'https://cdn.bahroma1.ru/goods/grandburger_6366d239d48cc.jpg',
-      color: '0xFFFFC107',
+      color: '0xFFFDD835',
     ),
     Product(
       id: '5',
@@ -63,7 +63,7 @@ class ProductDataProvider with ChangeNotifier {
       price: 166.99,
       imgUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUf2ez101D52qP1yId59ONKsbwpEB6uO4mUA&usqp=CAU',
-      color: '0xFFFFC107',
+      color: '0xFFFDD835',
     ),
   ];
 

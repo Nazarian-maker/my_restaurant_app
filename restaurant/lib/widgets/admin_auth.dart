@@ -53,7 +53,6 @@ class _AdminAuthState extends State<AdminAuth> {
                 height: 20,
               ),
             ],
-
             Text('Введите email:'),
             SizedBox(
               height: 20,
@@ -97,7 +96,13 @@ class _AdminAuthState extends State<AdminAuth> {
                       Navigator.of(context).pushNamed('/pin_page');
                     });
                   },
-                  child: Text('Войти по пинкоду'),
+                  child: Text(
+                    'Войти по пинкоду',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide(color: Colors.yellow.shade600),
+                  ),
                 ),
               ],
             ),
@@ -110,6 +115,9 @@ class _AdminAuthState extends State<AdminAuth> {
                 ElevatedButton(
                   onPressed: _auth,
                   child: Text('Войти'),
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.yellow.shade600)),
                 ),
                 SizedBox(
                   width: 10,

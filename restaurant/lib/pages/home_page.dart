@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
         return shouldPop ?? false;
       },
       child: Scaffold(
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: Colors.grey.shade400,
         body: SafeArea(
           child: Container(
             height: MediaQuery.of(context).size.height - 85,
