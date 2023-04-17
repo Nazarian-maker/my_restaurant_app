@@ -13,13 +13,13 @@ class _PinPageState extends State<PinPage> {
   TextEditingController textEditingController = TextEditingController();
   String pinText = '1234';
   String enterText = '';
-  String? errorText = null;
+  String? errorText;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Экран авторизации'),
+        title: const Text('Экран авторизации'),
         backgroundColor: Colors.yellow,
       ),
       body: Container(
@@ -32,7 +32,7 @@ class _PinPageState extends State<PinPage> {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(30.0),
+          padding: const EdgeInsets.all(30.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,17 +40,17 @@ class _PinPageState extends State<PinPage> {
               if (errorText != null) ...[
                 Text(
                   errorText!,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18.0,
                     color: Colors.amber,
                   ),
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
               ],
-              Text(
+              const Text(
                 'Введите пинкод',
                 style: TextStyle(
                   fontSize: 20.0,
@@ -58,11 +58,11 @@ class _PinPageState extends State<PinPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               PinCodeTextField(
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   color: Colors.white,
                 ),
                 keyboardType: TextInputType.number,
@@ -89,7 +89,7 @@ class _PinPageState extends State<PinPage> {
                   setState(() {});
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
             ],

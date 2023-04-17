@@ -10,7 +10,9 @@ import 'package:restaurant/pages/splash_screen.dart';
 import 'package:restaurant/widgets/admin_auth.dart';
 import 'package:restaurant/widgets/auth_widget.dart';
 
-void main() => runApp(MyApp());
+import 'models/auth_login.dart';
+
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -37,16 +39,17 @@ class MyApp extends StatelessWidget {
               .copyWith(background: Colors.white),
         ),
         routes: {
-          '/': (context) => SplashScreen(),
-          '/admin_auth': (context) => AdminAuth(),
-          '/home': (context) => HomePage(),
-          '/pin_page': (context) => PinPage(),
-          '/person_acc': (context) => PersonAccount(),
-          '/auth': (context) => AuthWidget(),
+          '/': (context) => const SplashScreen(),
+          '/admin_auth': (context) => AuthProvider(
+                model: AuthLogin(),
+                child: const AdminAuth(),
+              ),
+          '/home': (context) => const HomePage(),
+          '/pin_page': (context) => const PinPage(),
+          '/person_acc': (context) => const PersonAccount(),
+          '/auth': (context) => const AuthWidget(),
         },
         initialRoute: '/',
-        // home: AuthWidget(),
-        // HomePage(),
       ),
     );
   }

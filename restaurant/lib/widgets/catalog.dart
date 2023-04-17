@@ -6,7 +6,7 @@ class CatalogListTile extends StatelessWidget {
   final title;
   final price;
   final String komboName = "комбо";
-  CatalogListTile({Key? key, this.imgUrl, this.title, this.price})
+  const CatalogListTile({Key? key, this.imgUrl, this.title, this.price})
       : super(key: key);
 
   @override
@@ -34,7 +34,7 @@ class CatalogListTile extends StatelessWidget {
               ),
             ),
           ),
-          title: Text('${title} ${komboName}'),
+          title: Text('$title $komboName'),
           subtitle: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

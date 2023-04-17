@@ -9,7 +9,7 @@ class ItemCatalog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Каталог меню'),
+        title: const Text('Каталог меню'),
       ),
       body: Container(
         margin: const EdgeInsets.all(30.0),

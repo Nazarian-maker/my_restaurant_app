@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
         body: SafeArea(
           child: Container(
             height: MediaQuery.of(context).size.height - 85,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
                 // bottomRight: Radius.circular(35),
@@ -33,17 +33,15 @@ class HomePage extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.all(10.0),
               children: <Widget>[
-                Container(
-                  child: ListTile(
-                    title: Text('Меню нашего ресторана',
-                        style:
-                            TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                    trailing: IconButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/person_acc');
-                        },
-                        icon: Icon(Icons.person),
-                    ),
+                ListTile(
+                  title: const Text('Меню нашего ресторана',
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                  trailing: IconButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/person_acc');
+                      },
+                      icon: const Icon(Icons.person),
                   ),
                 ),
                 Container(
@@ -55,12 +53,12 @@ class HomePage extends StatelessWidget {
                     itemBuilder: (context, int index) =>
                         ChangeNotifierProvider.value(
                       value: productData.items[index],
-                      child: ItemCard(),
+                      child: const ItemCard(),
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
+                const Padding(
+                  padding: EdgeInsets.all(10.0),
                   child: Text('Каталог меню'),
                 ),
                 ...productData.items.map((value) {
@@ -74,7 +72,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: BottomBar(),
+        bottomNavigationBar: const BottomBar(),
       ),
     );
   }
@@ -82,15 +80,15 @@ class HomePage extends StatelessWidget {
   Future<bool?> showMyDialog(context) => showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Вы хотите выйти?'),
+        title: const Text('Вы хотите выйти?'),
         actions: [
           TextButton(
               onPressed: () => Navigator.pop(context, false),
-              child: Text('Нет'),
+              child: const Text('Нет'),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            child: Text('Да'),
+            child: const Text('Да'),
           ),
         ],
       ),

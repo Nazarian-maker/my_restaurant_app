@@ -28,8 +28,8 @@ class _AuthWidgetState extends State<AuthWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             // mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Выберите роль:'),
-              SizedBox(
+              const Text('Выберите роль:'),
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -44,11 +44,11 @@ class _AuthWidgetState extends State<AuthWidget> {
                       onPressed:() {
                         Navigator.pushNamed(context, '/admin_auth');
                       },
-                      child: Text('Администратор',
+                      child: const Text('Администратор',
                         style: TextStyle(color: Colors.black),
                       ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   ElevatedButton(
@@ -58,7 +58,7 @@ class _AuthWidgetState extends State<AuthWidget> {
                     onPressed: () {
                       Navigator.pushNamed(context, '/pin_page');
                     },
-                    child: Text(
+                    child: const Text(
                       'Официант',
                       style: TextStyle(color: Colors.black),
                     ),

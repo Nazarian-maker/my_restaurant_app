@@ -10,7 +10,7 @@ class SplashScreen extends StatelessWidget {
     return AnimatedSplashScreen(
       splash: SingleChildScrollView(
         child: Column(
-          children: [
+          children: const [
             Image(
               image: AssetImage('assets/from.png'),
             ),

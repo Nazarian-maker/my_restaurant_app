@@ -5,14 +5,14 @@ import 'package:restaurant/models/cart.dart';
 import '../widgets/cart_list_item.dart';
 
 class CartPage extends StatelessWidget {
-  CartPage({Key? key}) : super(key: key);
+  const CartPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final cartData = Provider.of<CartDataProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Корзина'),
+        title: const Text('Корзина'),
       ),
       body: cartData.cartItems.isEmpty
           ? Card(
@@ -22,29 +22,29 @@ class CartPage extends StatelessWidget {
                 height: 100,
                 width: double.infinity,
                 alignment: Alignment.center,
-                child: Text('Корзина пустая'),
+                child: const Text('Корзина пустая'),
               ),
             )
           : Column(
               children: [
-                Divider(),
+                const Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      'Стоимость: ' + cartData.totalAmount.toStringAsFixed(2),
-                      style: TextStyle(fontSize: 20.0),
+                      'Стоимость: ${cartData.totalAmount.toStringAsFixed(2)}',
+                      style: const TextStyle(fontSize: 20.0),
                     ),
                     MaterialButton(
                       onPressed: () {
                         cartData.clear();
                       },
                       color: Colors.yellow.shade600,
-                      child: Text('Купить!'),
+                      child: const Text('Купить!'),
                     ),
                   ],
                 ),
-                Divider(),
+                const Divider(),
                 Expanded(
                   child: CartItemList(cartData: cartData),
                 ),

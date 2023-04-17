@@ -45,36 +45,33 @@ class ItemCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                    child: Text(
-                  '${product.title}',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                )),
-              ],
-            ),
-          ),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text('${product.price}'),
-                IconButton(
-                  onPressed: () {
-                    Provider.of<CartDataProvider>(context, listen: false)
-                        .addItem(
-                      productId: product.id,
-                      price: product.price,
-                      title: product.title,
-                      imgUrl: product.imgUrl,
-                    );
-                  },
-                  icon: Icon(
-                    Icons.add_circle_outline,
-                    color: Colors.black54,
-                  ),
+                Text(
+                  product.title,
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text('${product.price}'),
+              IconButton(
+                onPressed: () {
+                  Provider.of<CartDataProvider>(context, listen: false)
+                      .addItem(
+                    productId: product.id,
+                    price: product.price,
+                    title: product.title,
+                    imgUrl: product.imgUrl,
+                  );
+                },
+                icon: const Icon(
+                  Icons.add_circle_outline,
+                  color: Colors.black54,
+                ),
+              ),
+            ],
           ),
         ],
       ),

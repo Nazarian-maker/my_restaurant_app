@@ -8,14 +8,14 @@ class PersonAccount extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
-        title: Text('Личный кабинет'),
+        title: const Text('Личный кабинет'),
         actions: [
           IconButton(
             onPressed: () {
               Navigator.pushNamedAndRemoveUntil(
                   context, '/auth', (route) => false);
             },
-            icon: Icon(Icons.exit_to_app),
+            icon: const Icon(Icons.exit_to_app),
           ),
         ],
       ),
@@ -32,7 +32,7 @@ class PersonAccount extends StatelessWidget {
                   child: CircleAvatar(
                     radius: 50,
                     backgroundColor: Colors.yellow.shade600,
-                    child: Text(
+                    child: const Text(
                       'User',
                       style: TextStyle(
                         fontSize: 20,
@@ -46,7 +46,7 @@ class PersonAccount extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Text(
                 'User Name',
                 style: TextStyle(
@@ -57,7 +57,7 @@ class PersonAccount extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
         ],

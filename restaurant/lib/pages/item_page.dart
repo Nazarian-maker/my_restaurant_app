@@ -22,95 +22,93 @@ class ItemPage extends StatelessWidget {
           style: GoogleFonts.marmelad(),
         ),
       ),
-      body: Container(
-        child: ListView(
-          children: [
-            Hero(
-              tag: data.imgUrl,
-              child: Container(
-                height: 300,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(data.imgUrl),
-                    fit: BoxFit.cover,
+      body: ListView(
+        children: [
+          Hero(
+            tag: data.imgUrl,
+            child: Container(
+              height: 300,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(data.imgUrl),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+          Card(
+            elevation: 5.0,
+            margin:
+                const EdgeInsets.symmetric(horizontal: 35.0, vertical: 10.0),
+            child: Container(
+              padding: const EdgeInsets.all(30.0),
+              child: Column(
+                children: [
+                  Text(
+                    data.title,
+                    style: TextStyle(fontSize: 26.0),
                   ),
-                ),
-              ),
-            ),
-            Card(
-              elevation: 5.0,
-              margin:
-                  const EdgeInsets.symmetric(horizontal: 35.0, vertical: 10.0),
-              child: Container(
-                padding: const EdgeInsets.all(30.0),
-                child: Column(
-                  children: [
-                    Text(
-                      data.title,
-                      style: TextStyle(fontSize: 26.0),
-                    ),
-                    Divider(),
-                    Row(
-                      children: [
-                        Text(
-                          'Цена ',
-                          style: TextStyle(fontSize: 24.0),
-                        ),
-                        Text(
-                          '${data.price} ',
-                          style: TextStyle(fontSize: 24.0),
-                        ),
-                      ],
-                    ),
-                    Divider(),
-                    Text(data.description),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Provider.of<CartDataProvider>(context)
-                            .cartItems
-                            .containsKey(productId)
-                        ? Column(
-                            children: [
-                              MaterialButton(
-                                  color: Color(0xFFFDD835),
-                                  child: Text('Перейти в корзину '),
-                                  onPressed: () {
-                                    Navigator.of(context)
-                                        .push(MaterialPageRoute(
-                                      builder: (context) => CartPage(),
-                                    ));
-                                  }),
-                              Text(
-                                'Товар уже доюавлен в корзину!',
-                                style: TextStyle(
-                                  fontSize: 12.0,
-                                  color: Colors.blueGrey,
-                                ),
+                  Divider(),
+                  Row(
+                    children: [
+                      const Text(
+                        'Цена ',
+                        style: TextStyle(fontSize: 24.0),
+                      ),
+                      Text(
+                        '${data.price} ',
+                        style: TextStyle(fontSize: 24.0),
+                      ),
+                    ],
+                  ),
+                  const Divider(),
+                  Text(data.description),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  Provider.of<CartDataProvider>(context)
+                          .cartItems
+                          .containsKey(productId)
+                      ? Column(
+                          children: [
+                            MaterialButton(
+                                color: const Color(0xFFFDD835),
+                                child: const Text('Перейти в корзину '),
+                                onPressed: () {
+                                  Navigator.of(context)
+                                      .push(MaterialPageRoute(
+                                    builder: (context) => CartPage(),
+                                  ));
+                                }),
+                            const Text(
+                              'Товар уже доюавлен в корзину!',
+                              style: TextStyle(
+                                fontSize: 12.0,
+                                color: Colors.blueGrey,
                               ),
-                            ],
-                          )
-                        : MaterialButton(
-                            child: Text('Добавить в корзину'),
-                            color: Colors.yellow.shade600,
-                            onPressed: () {
-                              Provider.of<CartDataProvider>(context,
-                                      listen: false)
-                                  .addItem(
-                                productId: data.id,
-                                imgUrl: data.imgUrl,
-                                title: data.title,
-                                price: data.price,
-                              );
-                            },
-                        ),
-                  ],
-                ),
+                            ),
+                          ],
+                        )
+                      : MaterialButton(
+                          color: Colors.yellow.shade600,
+                          onPressed: () {
+                            Provider.of<CartDataProvider>(context,
+                                    listen: false)
+                                .addItem(
+                              productId: data.id,
+                              imgUrl: data.imgUrl,
+                              title: data.title,
+                              price: data.price,
+                            );
+                          },
+                          child: const Text('Добавить в корзину'),
+                      ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
