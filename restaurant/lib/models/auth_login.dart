@@ -11,6 +11,8 @@ class AuthLogin extends ChangeNotifier {
 
   final loginTextController = TextEditingController();
   final passwordTextController = TextEditingController();
+  final pinTextController = TextEditingController();
+  var pinText;
 
   String? _errorMessage;
   String? get errorMessage => _errorMessage;
@@ -35,9 +37,46 @@ class AuthLogin extends ChangeNotifier {
     String? sessionId;
     try {
       sessionId =
-          await _apiClient.auth(email: login, password: password);
+          await _apiClient.validateUser(email: login, password: password);
     } catch (e) {
       _errorMessage = 'Неправильный email или пароль!';
+    }
+
+    _isAuthProgress = false;
+    if (_errorMessage != null) {
+      notifyListeners();
+      return;
+    }
+
+    if (sessionId == null) {
+      _errorMessage = 'Неизвестная ошибка, повторите попытку';
+      notifyListeners();
+      return;
+    }
+    await _sessionDataProvider.setSessionId(sessionId);
+    unawaited(Navigator.of(context)
+        .pushNamedAndRemoveUntil('/home', (route) => false));
+  }
+
+  Future<void> authPin(BuildContext context) async {
+    final pin = pinText;
+    print(pin);
+
+    if (pin == null) {
+      _errorMessage = 'Вы не ввели пинкод!';
+      notifyListeners();
+      return;
+    }
+    _errorMessage = null;
+    _isAuthProgress = true;
+    notifyListeners();
+
+    String? sessionId;
+    try {
+      sessionId =
+      await _apiClient.validateUserPin(pinText: pinText);
+    } catch (e) {
+      _errorMessage = 'Неправильный пинкод!';
     }
 
     _isAuthProgress = false;

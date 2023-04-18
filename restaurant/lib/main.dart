@@ -45,7 +45,8 @@ class MyApp extends StatelessWidget {
                 child: const AdminAuth(),
               ),
           '/home': (context) => const HomePage(),
-          '/pin_page': (context) => const PinPage(),
+          '/pin_page': (context) =>
+              AuthProvider(model: AuthLogin(), child: const PinPage()),
           '/person_acc': (context) => const PersonAccount(),
           '/auth': (context) => const AuthWidget(),
         },
