@@ -35,7 +35,7 @@ class AuthLogin extends ChangeNotifier {
     String? sessionId;
     try {
       sessionId =
-          await _apiClient.validateUser(email: login, password: password);
+          await _apiClient.auth(email: login, password: password);
     } catch (e) {
       _errorMessage = 'Неправильный email или пароль!';
     }

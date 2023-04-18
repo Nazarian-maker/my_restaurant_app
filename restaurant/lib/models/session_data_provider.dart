@@ -5,11 +5,11 @@ abstract class _Keys {
 }
 
 class SessionDataProvider {
-  final _secureStorage = FlutterSecureStorage();
+  final _secureStorage = const FlutterSecureStorage();
 
   Future<String?> getSessionId() =>
       _secureStorage.read(key: _Keys.sessionId);
 
-  Future<void>  setSessionId(String value) =>
+  Future<void> setSessionId(String value) =>
       _secureStorage.write(key: _Keys.sessionId, value: value);
 }
