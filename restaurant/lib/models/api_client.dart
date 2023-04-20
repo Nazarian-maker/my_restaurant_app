@@ -60,6 +60,27 @@ class ApiClient {
 
     return token;
   }
+
+  Future<String> userLogout({
+    required String? userToken,
+  }) async {
+    final url = Uri.parse('http://laravel-rest.ru/api/logout');
+    final request = await _client.postUrl(url);
+
+    request.headers.set('Authorization', 'Bearer $userToken');
+    final response = await request.close();
+
+    final json = await response
+        .transform(utf8.decoder)
+        .toList()
+        .then((value) => value.join())
+        .then((v) => jsonDecode(v) as Map<String, dynamic>);
+
+
+    final responseMessage = json['message'] as String;
+
+    return responseMessage;
+  }
 }
 
 //dod300@yandex.ru

@@ -92,6 +92,20 @@ class AuthLogin extends ChangeNotifier {
     unawaited(Navigator.of(context)
         .pushNamedAndRemoveUntil('/home', (route) => false));
   }
+
+  Future<void> userExit(BuildContext context) async {
+     String? message;
+
+    try {
+      message =
+      await _apiClient.userLogout(userToken: sessionId);
+    } catch (e) {
+      print('errors in logout');
+    }
+
+     unawaited(Navigator.of(context)
+         .pushNamedAndRemoveUntil('/auth', (route) => false));
+  }
 }
 
 class AuthProvider extends InheritedNotifier {

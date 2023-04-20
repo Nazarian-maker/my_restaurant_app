@@ -47,7 +47,8 @@ class MyApp extends StatelessWidget {
           '/home': (context) => const HomePage(),
           '/pin_page': (context) =>
               AuthProvider(model: AuthLogin(), child: const PinPage()),
-          '/person_acc': (context) => const PersonAccount(),
+          '/person_acc': (context) =>
+              AuthProvider(model: AuthLogin(), child: const PersonAccount()),
           '/auth': (context) => const AuthWidget(),
         },
         initialRoute: '/',

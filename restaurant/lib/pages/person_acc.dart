@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant/models/api_client.dart';
+
+import '../models/auth_login.dart';
 
 class PersonAccount extends StatelessWidget {
   const PersonAccount({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final model = AuthProvider.read(context)?.model;
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         title: const Text('Личный кабинет'),
         actions: [
           IconButton(
-            onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, '/auth', (route) => false);
-            },
+            onPressed: () => model?.userExit(context),
             icon: const Icon(Icons.exit_to_app),
           ),
         ],
