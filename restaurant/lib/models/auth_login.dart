@@ -13,6 +13,7 @@ class AuthLogin extends ChangeNotifier {
   final passwordTextController = TextEditingController();
   final pinTextController = TextEditingController();
   var pinText;
+  static String? sessionId;
 
   String? _errorMessage;
   String? get errorMessage => _errorMessage;
@@ -34,7 +35,6 @@ class AuthLogin extends ChangeNotifier {
     _isAuthProgress = true;
     notifyListeners();
 
-    String? sessionId;
     try {
       sessionId =
           await _apiClient.validateUser(email: login, password: password);
@@ -53,14 +53,13 @@ class AuthLogin extends ChangeNotifier {
       notifyListeners();
       return;
     }
-    await _sessionDataProvider.setSessionId(sessionId);
+    await _sessionDataProvider.setSessionId(sessionId!);
     unawaited(Navigator.of(context)
         .pushNamedAndRemoveUntil('/home', (route) => false));
   }
 
   Future<void> authPin(BuildContext context) async {
     final pin = pinText;
-    print(pin);
 
     if (pin == null) {
       _errorMessage = 'Вы не ввели пинкод!';
@@ -71,7 +70,6 @@ class AuthLogin extends ChangeNotifier {
     _isAuthProgress = true;
     notifyListeners();
 
-    String? sessionId;
     try {
       sessionId =
       await _apiClient.validateUserPin(pinText: pinText);
@@ -90,7 +88,7 @@ class AuthLogin extends ChangeNotifier {
       notifyListeners();
       return;
     }
-    await _sessionDataProvider.setSessionId(sessionId);
+    await _sessionDataProvider.setSessionId(sessionId!);
     unawaited(Navigator.of(context)
         .pushNamedAndRemoveUntil('/home', (route) => false));
   }

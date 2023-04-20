@@ -27,8 +27,6 @@ class ApiClient {
     .toList()
     .then((value) => value.join())
     .then((v) => jsonDecode(v) as Map<String, dynamic>);
-    // as Map<String, dynamic>
-    // print(json);
 
     final token = json['access_token'] as String;
 
@@ -57,8 +55,6 @@ class ApiClient {
         .toList()
         .then((value) => value.join())
         .then((v) => jsonDecode(v) as Map<String, dynamic>);
-    // as Map<String, dynamic>
-    // print(json);
 
     final token = json['access_token'] as String;
 

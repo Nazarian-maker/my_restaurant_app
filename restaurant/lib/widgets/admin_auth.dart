@@ -140,32 +140,3 @@ class _ErrorMessageWidget extends StatelessWidget {
     );
   }
 }
-
-// class AdminAuth extends StatefulWidget {
-//   const AdminAuth({Key? key}) : super(key: key);
-//
-//   @override
-//   State<AdminAuth> createState() => _AdminAuthState();
-// }
-//
-// class _AdminAuthState extends State<AdminAuth> {
-//   final _loginTextController = TextEditingController();
-//   final _passwordTextController = TextEditingController();
-//   String? errorText;
-//
-//   void _auth() {
-//     final email = _loginTextController.text;
-//     final password = _passwordTextController.text;
-//
-//     if (email == 'admin@mail.ru' && password == 'admin') {
-//       errorText = null;
-//       FocusScope.of(context).unfocus();
-//       Future.delayed(const Duration(seconds: 1), () {
-//         Navigator.of(context).pushNamed('/home');
-//       });
-//     } else {
-//       errorText = 'Неверный логин или пароль!';
-//     }
-//
-//     setState(() {});
-//   }
