@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/models/auth_login.dart';
 
+import '../pages/password_forgot_pages.dart';
+
 class AdminAuth extends StatelessWidget {
   const AdminAuth({Key? key}) : super(key: key);
 
@@ -76,14 +78,21 @@ class AdminAuth extends StatelessWidget {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                _AuthButtonWidget(),
-                SizedBox(
+              children: [
+                const _AuthButtonWidget(),
+                const SizedBox(
                   width: 10,
                 ),
                 TextButton(
-                  onPressed: null,
-                  child: Text('Сбросить пароль'),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return MyPasswordDialog(model: model);
+                      },
+                    );
+                  },
+                  child: const Text('Сбросить пароль'),
                 ),
               ],
             ),
@@ -94,6 +103,51 @@ class AdminAuth extends StatelessWidget {
   }
 }
 
+// //Метод для сброса пароля
+// class _MyPasswordDialog extends StatelessWidget {
+//   const _MyPasswordDialog({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return AlertDialog(
+//       title: const Text('Введите вашу почту'),
+//       content: TextField(
+//         controller: contr,
+//         decoration: const InputDecoration(
+//           border: OutlineInputBorder(),
+//           isCollapsed: true,
+//           contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+//         ),
+//       ),
+//       actions: [
+//         TextButton(
+//           onPressed: () {
+//             Navigator.pop(context, 'Отменить');
+//           },
+//           child: const Text(
+//             'Отменить',
+//             style: TextStyle(
+//               color: Colors.black,
+//             ),
+//           ),
+//         ),
+//         TextButton(
+//           onPressed: () {
+//             passReset;
+//           },
+//           child: const Text(
+//             'Отправить',
+//             style: TextStyle(
+//               color: Colors.black,
+//             ),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+// Кнопка для входа в приложение
 class _AuthButtonWidget extends StatelessWidget {
   const _AuthButtonWidget({
     super.key,
@@ -121,6 +175,7 @@ class _AuthButtonWidget extends StatelessWidget {
   }
 }
 
+//Вывод ошибок при входе
 class _ErrorMessageWidget extends StatelessWidget {
   const _ErrorMessageWidget({Key? key}) : super(key: key);
 

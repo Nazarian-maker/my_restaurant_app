@@ -12,7 +12,11 @@ class AuthLogin extends ChangeNotifier {
   final loginTextController = TextEditingController();
   final passwordTextController = TextEditingController();
   final pinTextController = TextEditingController();
+  final mailTextController = TextEditingController();
+  final mailPinTextController = TextEditingController();
+
   var pinText;
+  late String userMail;
   static String? sessionId;
 
   String? _errorMessage;
@@ -71,8 +75,7 @@ class AuthLogin extends ChangeNotifier {
     notifyListeners();
 
     try {
-      sessionId =
-      await _apiClient.validateUserPin(pinText: pinText);
+      sessionId = await _apiClient.validateUserPin(pinText: pinText);
     } catch (e) {
       _errorMessage = 'Неправильный пинкод!';
     }
@@ -94,17 +97,45 @@ class AuthLogin extends ChangeNotifier {
   }
 
   Future<void> userExit(BuildContext context) async {
-     String? message;
+    String? message;
 
     try {
-      message =
-      await _apiClient.userLogout(userToken: sessionId);
+      message = await _apiClient.userLogout(userToken: sessionId);
     } catch (e) {
       print('errors in logout');
     }
+    sessionId == null;
 
-     unawaited(Navigator.of(context)
-         .pushNamedAndRemoveUntil('/auth', (route) => false));
+    notifyListeners();
+    unawaited(Navigator.of(context)
+        .pushNamedAndRemoveUntil('/auth', (route) => false));
+  }
+
+  Future<void> userPassForgot(BuildContext context) async {
+    userMail = mailTextController.text;
+    String? message;
+
+    try {
+      message = await _apiClient.forgotPassword(userEmail: userMail);
+    } catch (e) {
+      print('Ошибка сброса пароля');
+    }
+    print(message);
+    notifyListeners();
+  }
+
+  Future<void> passwordPin(BuildContext context) async {
+    final pin = mailPinTextController.text;
+    String? message;
+
+    try {
+      message = await _apiClient.passwordPinConfirmation(pasPin: pin);
+    } catch (e) {
+      print('jopa');
+    }
+    print('jopa');
+    print(message);
+    notifyListeners();
   }
 }
 
