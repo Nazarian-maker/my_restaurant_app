@@ -103,50 +103,6 @@ class AdminAuth extends StatelessWidget {
   }
 }
 
-// //Метод для сброса пароля
-// class _MyPasswordDialog extends StatelessWidget {
-//   const _MyPasswordDialog({Key? key}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return AlertDialog(
-//       title: const Text('Введите вашу почту'),
-//       content: TextField(
-//         controller: contr,
-//         decoration: const InputDecoration(
-//           border: OutlineInputBorder(),
-//           isCollapsed: true,
-//           contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-//         ),
-//       ),
-//       actions: [
-//         TextButton(
-//           onPressed: () {
-//             Navigator.pop(context, 'Отменить');
-//           },
-//           child: const Text(
-//             'Отменить',
-//             style: TextStyle(
-//               color: Colors.black,
-//             ),
-//           ),
-//         ),
-//         TextButton(
-//           onPressed: () {
-//             passReset;
-//           },
-//           child: const Text(
-//             'Отправить',
-//             style: TextStyle(
-//               color: Colors.black,
-//             ),
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
-
 // Кнопка для входа в приложение
 class _AuthButtonWidget extends StatelessWidget {
   const _AuthButtonWidget({

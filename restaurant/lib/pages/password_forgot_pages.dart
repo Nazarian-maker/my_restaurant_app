@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/pages/password_pin.dart';
 
-import '../models/auth_login.dart';
-
 //Метод для сброса пароля
 class MyPasswordDialog extends StatelessWidget {
   final model;

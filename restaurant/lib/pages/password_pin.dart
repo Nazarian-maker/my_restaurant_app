@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
+//Окно с вводом пинкода для сброса пароля
 class PinPasswordForgot extends StatelessWidget {
   final model;
   const PinPasswordForgot({Key? key, this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // final model = AuthProvider.read(context)?.model;
 
     return AlertDialog(
       title: const Text('Введите пинкод, присланный на почту:'),
