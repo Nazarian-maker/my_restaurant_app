@@ -14,6 +14,8 @@ class AuthLogin extends ChangeNotifier {
   final pinTextController = TextEditingController();
   final mailTextController = TextEditingController();
   final mailPinTextController = TextEditingController();
+  final newPasswordController = TextEditingController();
+  final newPasswordConfirmationController = TextEditingController();
 
   var pinText;
   late String userMail;
@@ -131,7 +133,22 @@ class AuthLogin extends ChangeNotifier {
     try {
       message = await _apiClient.passwordPinConfirmation(pasPin: pin);
     } catch (e) {
-      print('jopa');
+      print('Ошибка при вводе пароля');
+    }
+    print(message);
+    notifyListeners();
+  }
+
+  Future<void> newUserPasswordSet(BuildContext context) async {
+    final pass = newPasswordController.text;
+    final newPass = newPasswordConfirmationController.text;
+    final mail = userMail;
+    String? message;
+
+    try {
+      message = await _apiClient.newUserPass(mail: mail, pass: pass, newPass: newPass);
+    } catch (e) {
+      print('Ошибка смены пароля');
     }
     print('jopa');
     print(message);

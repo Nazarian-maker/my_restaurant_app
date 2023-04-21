@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'new_user_password.dart';
+
 //Окно с вводом пинкода для сброса пароля
 class PinPasswordForgot extends StatelessWidget {
   final model;
@@ -34,6 +36,12 @@ class PinPasswordForgot extends StatelessWidget {
         TextButton(
           onPressed: () {
             model?.passwordPin(context);
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return NewUserPassword(model: model,);
+              },
+            );
           },
           child: const Text(
             'Дальше',
