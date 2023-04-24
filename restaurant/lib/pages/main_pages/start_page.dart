@@ -36,7 +36,7 @@ class _StartPageState extends State<StartPage> {
               color: Colors.white,
             ),
             child: ListView(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
               children: [
                 ListTile(
                   title: const Text(
@@ -46,7 +46,7 @@ class _StartPageState extends State<StartPage> {
                   trailing: Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.yellow[600], // Фоновый цвет
+                      color: Colors.yellow[600],
                     ),
                     child: CircleAvatar(
                       backgroundColor: Colors.transparent,
@@ -60,8 +60,7 @@ class _StartPageState extends State<StartPage> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.all(5.0),
-                  height: 270,
+                  height: 800,
                   child: NotifierProvider(
                     model: model,
                     child: const _CategoriesWidget(),
@@ -83,25 +82,56 @@ class _CategoriesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = NotifierProvider.watch<CategoryList>(context);
     if (model == null) return const SizedBox.shrink();
-    return ListView.builder(
-      itemCount: model.categories.length,
-      padding: const EdgeInsets.all(30.0),
-      itemBuilder: (BuildContext context, int index) {
-        final category = model.categories[index];
-        return Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image.network(
-                category.url.toString(),
-                width: 150,
-                height: 150,
+    return Stack(
+      children: [
+        ListView.builder(
+          itemCount: model.categories.length,
+          itemExtent: 200,
+          itemBuilder: (BuildContext context, int index) {
+            final category = model.categories[index];
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Stack(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.yellow.shade600,
+                      border: Border.all(color: Colors.black.withOpacity(0.2)),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 8,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    clipBehavior: Clip.hardEdge,
+                    child: Column(
+                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Image.network(
+                          category.url.toString(),
+                          width: 150,
+                          height: 150,
+                        ),
+                        Text(category.name.toString()),
+                      ],
+                    ),
+                  ),
+                  Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(10),
+                      onTap: () => model.onCategoryTap(context, index),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              Text(category.name.toString()),
-            ]);
-      },
+            );
+          },
+        ),
+      ],
     );
   }
 }
