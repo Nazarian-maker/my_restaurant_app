@@ -9,7 +9,6 @@ class PinPasswordForgot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return AlertDialog(
       title: const Text('Введите пинкод, присланный на почту:'),
       content: TextField(
@@ -35,13 +34,26 @@ class PinPasswordForgot extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            model?.passwordPin(context);
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return NewUserPassword(model: model,);
-              },
-            );
+            if (model?.mailPinTextController?.text?.isEmpty ?? true) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text(
+                    "Введите пинкод!",
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ),
+              );
+            } else {
+              model?.passwordPin(context);
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return NewUserPassword(
+                    model: model,
+                  );
+                },
+              );
+            }
           },
           child: const Text(
             'Дальше',

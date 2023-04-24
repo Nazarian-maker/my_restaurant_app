@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/pages/password_pin.dart';
+import 'package:restaurant/pages/pass_reset/password_pin.dart';
 
 //Метод для сброса пароля
 class MyPasswordDialog extends StatelessWidget {
@@ -32,13 +32,27 @@ class MyPasswordDialog extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            model?.userPassForgot(context);
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return PinPasswordForgot(model: model,);
-              },
-            );
+            if (model?.mailTextController.text.isEmpty ?? true) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text(
+                    'Заполните поле ввода почты',
+                    style: TextStyle(color: Colors.red),
+                  ),
+                  backgroundColor: Colors.white,
+                ),
+              );
+            } else {
+              model?.userPassForgot(context);
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return PinPasswordForgot(
+                    model: model,
+                  );
+                },
+              );
+            }
           },
           child: const Text(
             'Отправить',
@@ -51,4 +65,3 @@ class MyPasswordDialog extends StatelessWidget {
     );
   }
 }
-

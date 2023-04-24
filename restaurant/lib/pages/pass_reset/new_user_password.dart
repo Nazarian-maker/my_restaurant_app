@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/models/auth_login.dart';
 
 //Окно для ввода нового пароля
 class NewUserPassword extends StatelessWidget {
@@ -45,7 +44,8 @@ class NewUserPassword extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () {
-            Navigator.pushNamedAndRemoveUntil(context, '/admin_auth', (route) => false);
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/admin_auth', (route) => false);
           },
           child: const Text(
             'Отменить',
@@ -56,13 +56,39 @@ class NewUserPassword extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            model?.newUserPasswordSet(context);
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return const SuccessWindow();
-              },
-            );
+            if (model?.newPasswordController.text.isEmpty ||
+                model?.newPasswordConfirmationController.text.isEmpty) {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text('Ошибка!'),
+                    content: const Text(
+                        'Для ввода нового пароля необходимо заполнить все поля.'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Ok'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            } else {
+              model?.newUserPasswordSet(context);
+              showDialog(
+                context: context,
+                builder: (_) => const AlertDialog(
+                  title: Text('Пароль был успешно изменён!'),
+                ),
+              );
+              Future.delayed(const Duration(seconds: 2), () {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/admin_auth', (route) => false);
+              });
+            }
           },
           child: const Text(
             'Дальше',
@@ -70,25 +96,6 @@ class NewUserPassword extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-        ),
-      ],
-    );
-  }
-}
-
-class SuccessWindow extends StatelessWidget {
-  const SuccessWindow({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: const Text('Пароль был успешно изменён!'),
-      actions: [
-        TextButton(
-          onPressed: () {
-            Navigator.pushNamedAndRemoveUntil(context, '/admin_auth', (route) => false);
-          },
-          child: const Text('Ok'),
         ),
       ],
     );

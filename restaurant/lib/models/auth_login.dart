@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant/models/api_client.dart';
-import 'package:restaurant/models/session_data_provider.dart';
+import 'package:restaurant/server/api_client.dart';
+import 'package:restaurant/server/session_data_provider.dart';
 
 class AuthLogin extends ChangeNotifier {
   final _apiClient = ApiClient();
@@ -122,7 +122,6 @@ class AuthLogin extends ChangeNotifier {
     } catch (e) {
       print('Ошибка сброса пароля');
     }
-    print(message);
     notifyListeners();
   }
 
@@ -135,7 +134,6 @@ class AuthLogin extends ChangeNotifier {
     } catch (e) {
       print('Ошибка при вводе пароля');
     }
-    print(message);
     notifyListeners();
   }
 
@@ -150,8 +148,6 @@ class AuthLogin extends ChangeNotifier {
     } catch (e) {
       print('Ошибка смены пароля');
     }
-    print('jopa');
-    print(message);
     notifyListeners();
   }
 }
