@@ -41,6 +41,7 @@ class PinPasswordForgot extends StatelessWidget {
                     "Введите пинкод!",
                     style: TextStyle(color: Colors.red),
                   ),
+                  backgroundColor: Colors.white,
                 ),
               );
             } else {
