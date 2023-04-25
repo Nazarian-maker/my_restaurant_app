@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/category_list.dart';
-import '../../widgets/provider.dart';
+import '../../server/provider.dart';
 
 class StartPage extends StatefulWidget {
   const StartPage({Key? key}) : super(key: key);

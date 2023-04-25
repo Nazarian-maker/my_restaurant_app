@@ -61,7 +61,7 @@ class AuthLogin extends ChangeNotifier {
     }
     await _sessionDataProvider.setSessionId(sessionId!);
     unawaited(Navigator.of(context)
-        .pushNamedAndRemoveUntil('/home', (route) => false));
+        .pushNamedAndRemoveUntil('/category_page', (route) => false));
   }
 
   Future<void> authPin(BuildContext context) async {
@@ -95,7 +95,7 @@ class AuthLogin extends ChangeNotifier {
     }
     await _sessionDataProvider.setSessionId(sessionId!);
     unawaited(Navigator.of(context)
-        .pushNamedAndRemoveUntil('/home', (route) => false));
+        .pushNamedAndRemoveUntil('/category_page', (route) => false));
   }
 
   Future<void> userExit(BuildContext context) async {
@@ -106,7 +106,8 @@ class AuthLogin extends ChangeNotifier {
     } catch (e) {
       print('errors in logout');
     }
-    sessionId == null;
+
+    SessionDataProvider().setSessionId(null);
 
     notifyListeners();
     unawaited(Navigator.of(context)
@@ -149,25 +150,5 @@ class AuthLogin extends ChangeNotifier {
       print('Ошибка смены пароля');
     }
     notifyListeners();
-  }
-}
-
-class AuthProvider extends InheritedNotifier {
-  final AuthLogin model;
-
-  const AuthProvider({
-    Key? key,
-    required this.model,
-    required Widget child,
-  }) : super(key: key, notifier: model, child: child);
-
-  static AuthProvider? watch(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<AuthProvider>();
-  }
-
-  static AuthProvider? read(BuildContext context) {
-    final widget =
-        context.getElementForInheritedWidgetOfExactType<AuthProvider>()?.widget;
-    return widget is AuthProvider ? widget : null;
   }
 }

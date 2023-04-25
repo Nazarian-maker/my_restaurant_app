@@ -1,18 +1,17 @@
+import 'package:flutter/foundation.dart';
 import 'package:restaurant/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant/widgets/item_card.dart';
-
 import '../../widgets/bottom_bar.dart';
-import '../../widgets/catalog.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class Menu extends StatelessWidget {
+  final int categoryId;
+  const Menu({Key? key, required this.categoryId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final productData = Provider.of<ProductDataProvider>(context);
-
     return Scaffold(
       backgroundColor: Colors.grey.shade400,
       body: SafeArea(
@@ -27,16 +26,10 @@ class HomePage extends StatelessWidget {
           child: ListView(
             padding: const EdgeInsets.all(10.0),
             children: <Widget>[
-              ListTile(
-                title: const Text('Меню нашего ресторана',
+              const ListTile(
+                title: Text('Меню категории',
                     style:
                     TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                trailing: IconButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/person_acc');
-                  },
-                  icon: const Icon(Icons.person),
-                ),
               ),
               Container(
                 padding: const EdgeInsets.all(5.0),
@@ -53,15 +46,8 @@ class HomePage extends StatelessWidget {
               ),
               const Padding(
                 padding: EdgeInsets.all(10.0),
-                child: Text('Каталог меню'),
+                child: Text('Остальные категории'),
               ),
-              ...productData.items.map((value) {
-                return CatalogListTile(
-                  imgUrl: value.imgUrl,
-                  title: value.title,
-                  price: value.price,
-                );
-              }).toList(),
             ],
           ),
         ),

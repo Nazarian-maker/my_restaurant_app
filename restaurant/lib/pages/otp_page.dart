@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:restaurant/server/provider.dart';
 
 import '../models/auth_login.dart';
 
@@ -9,7 +10,7 @@ class PinPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = AuthProvider.read(context)?.model;
+    final model = NotifierProvider.read<AuthLogin>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -68,10 +69,11 @@ class PinPage extends StatelessWidget {
                 height: 20.0,
               ),
               ElevatedButton(
-                  onPressed: () => model?.authPin(context),
+                onPressed: () => model?.authPin(context),
                 style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.yellow.shade600)),
-                  child: Text('Войти'),
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.yellow.shade600)),
+                child: Text('Войти'),
               ),
             ],
           ),
@@ -86,7 +88,8 @@ class _ErrorMessageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final errorMessage = AuthProvider.watch(context)?.model.errorMessage;
+    final errorMessage =
+        NotifierProvider.watch<AuthLogin>(context)?.errorMessage;
     if (errorMessage == null) return const SizedBox.shrink();
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),

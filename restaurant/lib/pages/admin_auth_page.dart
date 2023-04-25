@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/models/auth_login.dart';
+import 'package:restaurant/server/provider.dart';
 
 import 'pass_reset/password_forgot.dart';
 
@@ -8,7 +9,7 @@ class AdminAuth extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = AuthProvider.read(context)?.model;
+    final model = NotifierProvider.read<AuthLogin>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -111,7 +112,7 @@ class _AuthButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = AuthProvider.watch(context)?.model;
+    final model = NotifierProvider.watch<AuthLogin>(context);
     final onPressed =
         model?.canAuth == true ? () => model?.auth(context) : null;
     final child = model?.isAuthProgress == true
@@ -137,7 +138,7 @@ class _ErrorMessageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final errorMessage = AuthProvider.watch(context)?.model.errorMessage;
+    final errorMessage = NotifierProvider.watch<AuthLogin>(context)?.errorMessage;
     if (errorMessage == null) return const SizedBox.shrink();
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),

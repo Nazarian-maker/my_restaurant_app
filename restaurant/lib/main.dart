@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:restaurant/models/cart.dart';
 import 'package:restaurant/models/product.dart';
-import 'package:restaurant/pages/main_pages/home_page.dart';
+import 'package:restaurant/pages/main_pages/menu_page.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant/pages/otp_page.dart';
 import 'package:restaurant/pages/person_acc.dart';
@@ -10,6 +10,7 @@ import 'package:restaurant/pages/main_pages/splash_screen.dart';
 import 'package:restaurant/pages/admin_auth_page.dart';
 import 'package:restaurant/pages/main_pages/auth_page.dart';
 import 'package:restaurant/pages/main_pages/start_page.dart';
+import 'package:restaurant/server/provider.dart';
 
 import 'models/auth_login.dart';
 
@@ -41,16 +42,23 @@ class MyApp extends StatelessWidget {
         ),
         routes: {
           '/': (context) => const SplashScreen(),
-          '/admin_auth': (context) => AuthProvider(
+          '/auth/admin': (context) => NotifierProvider(
                 model: AuthLogin(),
                 child: const AdminAuth(),
               ),
-          '/home': (context) => StartPage(),
-          // const HomePage(),
-          '/pin_page': (context) =>
-              AuthProvider(model: AuthLogin(), child: const PinPage()),
+          '/category_page': (context) => const StartPage(),
+          '/category_page/category_menu': (context) {
+            final arguments = ModalRoute.of(context)?.settings.arguments as int;
+            if(arguments is int) {
+              return Menu(categoryId: arguments);
+            } else {
+              return const Menu(categoryId: 0);
+            }
+          },
+          '/auth/pin_page': (context) =>
+              NotifierProvider(model: AuthLogin(), child: const PinPage()),
           '/person_acc': (context) =>
-              AuthProvider(model: AuthLogin(), child: const PersonAccount()),
+              NotifierProvider(model: AuthLogin(), child: const PersonAccount()),
           '/auth': (context) => const AuthWidget(),
         },
         initialRoute: '/',

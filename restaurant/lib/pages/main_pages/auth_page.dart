@@ -42,7 +42,7 @@ class _AuthWidgetState extends State<AuthWidget> {
                             MaterialStateProperty.all(Colors.yellow.shade600),
                       ),
                       onPressed:() {
-                        Navigator.pushNamed(context, '/admin_auth');
+                        Navigator.pushNamed(context, '/auth/admin');
                       },
                       child: const Text('Почта и логин',
                         style: TextStyle(color: Colors.black),
@@ -56,7 +56,7 @@ class _AuthWidgetState extends State<AuthWidget> {
                       backgroundColor: MaterialStateProperty.all(Colors.yellow.shade600),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/pin_page');
+                      Navigator.pushNamed(context, '/auth/pin_page');
                     },
                     child: const Text(
                       'Пинкод',

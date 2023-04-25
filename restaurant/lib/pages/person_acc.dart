@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/server/api_client.dart';
-
 import '../models/auth_login.dart';
+import '../server/provider.dart';
 
 class PersonAccount extends StatelessWidget {
   const PersonAccount({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final model = AuthProvider.read(context)?.model;
+    final model = NotifierProvider.read<AuthLogin>(context);
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(

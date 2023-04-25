@@ -15,6 +15,6 @@ class CategoryList extends ChangeNotifier {
 
   void onCategoryTap(BuildContext context, int index) {
     final id = _categories[index].id;
-     Navigator.of(context).pushNamed('/auth', arguments: id);
+     Navigator.of(context).pushNamed('/category_page/category_menu', arguments: id);
   }
 }
