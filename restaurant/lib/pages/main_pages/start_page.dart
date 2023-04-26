@@ -54,7 +54,8 @@ class _StartPageState extends State<StartPage> {
         ),
         body: Center(
           child: NotifierProvider(
-            model: model,
+            create: () => model,
+            isManagingModel: false,
             child: const _CategoriesWidget(),
           ),
         ),
@@ -101,7 +102,7 @@ class _CategoriesWidget extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
                           height: 130,
-                          width: 150,
+                          width: 180,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
@@ -120,7 +121,7 @@ class _CategoriesWidget extends StatelessWidget {
                 color: Colors.transparent,
                 child: InkWell(
                   borderRadius: BorderRadius.circular(10),
-                  onTap: () => model.onCategoryTap(context, index),
+                  onTap: () => model.onCategoryTap(context, index, category.name),
                 ),
               ),
             ],

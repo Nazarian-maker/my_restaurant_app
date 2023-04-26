@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant/models/cart.dart';
-import 'package:restaurant/models/product.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:restaurant/pages/cart_page.dart';
 
@@ -12,31 +11,29 @@ class ItemPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data =
-        Provider.of<ProductDataProvider>(context).getElementById(productId);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          data.title,
-          style: GoogleFonts.marmelad(),
-        ),
+        // title: Text(
+        //   data.title,
+        //   style: GoogleFonts.marmelad(),
+        // ),
       ),
       body: ListView(
         children: [
-          Hero(
-            tag: data.imgUrl,
-            child: Container(
-              height: 300,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(data.imgUrl),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          ),
+          // Hero(
+          //   // tag: data.imgUrl,
+          //   child: Container(
+          //     height: 300,
+          //     width: double.infinity,
+          //     decoration: BoxDecoration(
+          //       // image: DecorationImage(
+          //         // image: NetworkImage(data.imgUrl),
+          //         // fit: BoxFit.cover,
+          //       ),
+          //     ),
+          //   ),
+          // ),
           Card(
             elevation: 5.0,
             margin:
@@ -45,10 +42,10 @@ class ItemPage extends StatelessWidget {
               padding: const EdgeInsets.all(30.0),
               child: Column(
                 children: [
-                  Text(
-                    data.title,
-                    style: TextStyle(fontSize: 26.0),
-                  ),
+                  // Text(
+                    // data.title,
+                    // style: TextStyle(fontSize: 26.0),
+                  // ),
                   Divider(),
                   Row(
                     children: [
@@ -56,14 +53,14 @@ class ItemPage extends StatelessWidget {
                         'Цена ',
                         style: TextStyle(fontSize: 24.0),
                       ),
-                      Text(
-                        '${data.price} ',
-                        style: TextStyle(fontSize: 24.0),
-                      ),
+                      // Text(
+                      //   '${data.price} ',
+                      //   style: TextStyle(fontSize: 24.0),
+                      // ),
                     ],
                   ),
                   const Divider(),
-                  Text(data.description),
+                  // Text(data.description),
                   const SizedBox(
                     height: 20.0,
                   ),
@@ -96,10 +93,10 @@ class ItemPage extends StatelessWidget {
                             Provider.of<CartDataProvider>(context,
                                     listen: false)
                                 .addItem(
-                              productId: data.id,
-                              imgUrl: data.imgUrl,
-                              title: data.title,
-                              price: data.price,
+                              // productId: data.id,
+                              // imgUrl: data.imgUrl,
+                              // title: data.title,
+                              // price: data.price,
                             );
                           },
                           child: const Text('Добавить в корзину'),

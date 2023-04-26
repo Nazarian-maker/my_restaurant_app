@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:restaurant/models/cart.dart';
-import 'package:restaurant/models/product.dart';
 import 'package:restaurant/pages/item_page.dart';
 
+import '../models/product_list.dart';
+import '../server/provider.dart';
+
 class ItemCard extends StatelessWidget {
-  const ItemCard({Key? key}) : super(key: key);
+  final product;
+  const ItemCard({Key? key, this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<Product>(context, listen: false);
-
+    final model = NotifierProvider.watch<ProductList>(context);
     return Container(
       width: 150,
       padding: const EdgeInsets.all(4.0),
       margin: const EdgeInsets.all(5.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.0),
-        color: Color(int.parse(product.color)),
+        color: Colors.yellow.shade600,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,13 +40,13 @@ class ItemCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     image: DecorationImage(
-                      image: NetworkImage(product.imgUrl),
+                      image: NetworkImage(product.url),
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
                 Text(
-                  product.title,
+                  product.name,
                   style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ],
@@ -55,22 +55,22 @@ class ItemCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text('${product.price}'),
-              IconButton(
-                onPressed: () {
-                  Provider.of<CartDataProvider>(context, listen: false)
-                      .addItem(
-                    productId: product.id,
-                    price: product.price,
-                    title: product.title,
-                    imgUrl: product.imgUrl,
-                  );
-                },
-                icon: const Icon(
-                  Icons.add_circle_outline,
-                  color: Colors.black54,
-                ),
-              ),
+              Text('${product.cost}'),
+              // IconButton(
+              //   onPressed: () {
+              //     Provider.of<CartDataProvider>(context, listen: false)
+              //         .addItem(
+              //       productId: product.id,
+              //       price: product.cost,
+              //       title: product.name,
+              //       imgUrl: product.image,
+              //     );
+              //   },
+              //   icon: const Icon(
+              //     Icons.add_circle_outline,
+              //     color: Colors.black54,
+              //   ),
+              // ),
             ],
           ),
         ],

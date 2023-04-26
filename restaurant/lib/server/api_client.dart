@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:restaurant/models/category.dart';
+import 'package:restaurant/models/product.dart';
 
 class ApiClient {
   final _client = HttpClient();
@@ -16,6 +17,21 @@ class ApiClient {
     .map((dynamic e) => Category.fromJson(e as Map<String, dynamic>))
     .toList();
     return categories;
+  }
+
+  Future<List<Product>> fetchDishes({
+  required int categoryId,
+}) async {
+    final url = Uri.parse('http://laravel-rest.ru/api/dishes/?category_id=$categoryId');
+    final request = await _client.getUrl(url);
+    final response = await request.close();
+    final jsonStrings = await response.transform(utf8.decoder).toList();
+    final jsonString = jsonStrings.join();
+    final json = jsonDecode(jsonString) as List<dynamic>;
+    final dishes = json
+        .map((dynamic e) => Product.fromJson(e as Map<String, dynamic>))
+        .toList();
+    return dishes;
   }
 
   Future<String> validateUser({

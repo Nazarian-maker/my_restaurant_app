@@ -13,8 +13,8 @@ class CategoryList extends ChangeNotifier {
     notifyListeners();
   }
 
-  void onCategoryTap(BuildContext context, int index) {
+  void onCategoryTap(BuildContext context, int index, name) {
     final id = _categories[index].id;
-     Navigator.of(context).pushNamed('/category_page/category_menu', arguments: id);
+     Navigator.of(context).pushNamed('/category_page/category_menu', arguments: [id, name]);
   }
 }
