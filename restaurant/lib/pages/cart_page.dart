@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant/models/cart.dart';
-
 import '../widgets/cart_list_item.dart';
 
 class CartPage extends StatelessWidget {
@@ -9,7 +8,7 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cartData = Provider.of<CartDataProvider>(context);
+    final cartData = context.watch<CartDataProvider>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Корзина'),
@@ -40,7 +39,7 @@ class CartPage extends StatelessWidget {
                         cartData.clear();
                       },
                       color: Colors.yellow.shade600,
-                      child: const Text('Купить!'),
+                      child: const Text('Рассчитать!'),
                     ),
                   ],
                 ),

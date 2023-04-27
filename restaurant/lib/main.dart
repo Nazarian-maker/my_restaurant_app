@@ -48,7 +48,8 @@ class MyApp extends StatelessWidget {
               ),
           '/category_page': (context) => const StartPage(),
           '/category_page/category_menu': (context) {
-            final arguments = ModalRoute.of(context)?.settings.arguments as List;
+            final arguments =
+                ModalRoute.of(context)?.settings.arguments as List;
             return NotifierProvider(
               create: () => ProductList(categoryId: arguments[0]),
               child: Menu(categoryName: arguments[1]),

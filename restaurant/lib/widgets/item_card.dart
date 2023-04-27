@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:restaurant/models/cart.dart';
 import 'package:restaurant/pages/item_page.dart';
-import '../server/provider.dart';
 
 class ItemCard extends StatelessWidget {
   final product;
@@ -26,7 +26,8 @@ class ItemCard extends StatelessWidget {
               //  Переход на страницу товара
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => ItemPage(productId: product.id, product: product),
+                  builder: (context) =>
+                      ItemPage(productId: product.id, product: product),
                 ),
               );
             },
@@ -45,7 +46,8 @@ class ItemCard extends StatelessWidget {
                 ),
                 Text(
                   product.name,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -56,8 +58,8 @@ class ItemCard extends StatelessWidget {
               Text('${product.cost}'),
               IconButton(
                 onPressed: () {
-                  NotifierProvider.watch<CartDataProvider>(context)?.addItem(
-                    productId: product.id,
+                  Provider.of<CartDataProvider>(context, listen: false).addItem(
+                    productId: '${product.id}',
                     price: product.cost,
                     title: product.name,
                     imgUrl: product.url,

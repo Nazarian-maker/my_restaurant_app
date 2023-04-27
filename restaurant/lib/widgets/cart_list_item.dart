@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/models/cart.dart';
 import 'package:provider/provider.dart';
-
+import 'package:restaurant/models/cart.dart';
 import 'cart_item.dart';
 
 class CartItemList extends StatelessWidget {
@@ -28,7 +27,7 @@ class CartItemList extends StatelessWidget {
           ),
           direction: DismissDirection.endToStart,
           onDismissed: (direction) =>
-              Provider.of<CartDataProvider>(context, listen: false)
+          context.watch<CartDataProvider>()
                   .deleteItem(cartData.cartItems.keys.toList()[index]),
           child: CartItem(cartData: cartData, index: index),
         );

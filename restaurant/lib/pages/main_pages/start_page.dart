@@ -28,9 +28,26 @@ class _StartPageState extends State<StartPage> {
         return shouldPop ?? false;
       },
       child: Scaffold(
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              DrawerHeader(
+                decoration: BoxDecoration(color: Colors.yellow.shade600),
+                child: const Center(
+                  child: Text('Заказы',
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: const Text('Категории нашего ресторана'),
+          title: const Text('Категории ресторана'),
           actions: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),

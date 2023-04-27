@@ -6,7 +6,7 @@ class Cart {
   final String id;
   final String title;
   final int number;
-  final num price;
+  final int price;
   final String imgUrl;
 
   Cart(
@@ -49,7 +49,7 @@ class CartDataProvider with ChangeNotifier {
       _cartItems.putIfAbsent(
           productId,
           () => Cart(
-                id: '${DateTime.now()}',
+                id: productId,
                 title: title,
                 price: price,
                 imgUrl: imgUrl,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/models/cart.dart';
 import 'package:provider/provider.dart';
+import 'package:restaurant/models/cart.dart';
 import 'package:restaurant/pages/cart_page.dart';
 
 import '../pages/item_page.dart';
@@ -10,7 +10,7 @@ class BottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cartData = Provider.of<CartDataProvider>(context);
+    final  cartData = context.watch<CartDataProvider>();
     final cartItems = cartData.cartItems;
 
     return BottomAppBar(
@@ -23,7 +23,7 @@ class BottomBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Container(
+            SizedBox(
               height: 50.0,
               width: MediaQuery.of(context).size.width / 2 + 50,
               child: ListView.builder(
@@ -104,7 +104,7 @@ class BottomBar extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => CartPage()),
+                        MaterialPageRoute(builder: (context) => const CartPage()),
                       );
                     },
                     icon: const Icon(
