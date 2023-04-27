@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant/models/cart.dart';
 import 'package:restaurant/pages/item_page.dart';
-
-import '../models/product_list.dart';
 import '../server/provider.dart';
 
 class ItemCard extends StatelessWidget {
@@ -10,7 +9,6 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = NotifierProvider.watch<ProductList>(context);
     return Container(
       width: 150,
       padding: const EdgeInsets.all(4.0),
@@ -28,7 +26,7 @@ class ItemCard extends StatelessWidget {
               //  Переход на страницу товара
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => ItemPage(productId: product.id),
+                  builder: (context) => ItemPage(productId: product.id, product: product),
                 ),
               );
             },
@@ -56,21 +54,20 @@ class ItemCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text('${product.cost}'),
-              // IconButton(
-              //   onPressed: () {
-              //     Provider.of<CartDataProvider>(context, listen: false)
-              //         .addItem(
-              //       productId: product.id,
-              //       price: product.cost,
-              //       title: product.name,
-              //       imgUrl: product.image,
-              //     );
-              //   },
-              //   icon: const Icon(
-              //     Icons.add_circle_outline,
-              //     color: Colors.black54,
-              //   ),
-              // ),
+              IconButton(
+                onPressed: () {
+                  NotifierProvider.watch<CartDataProvider>(context)?.addItem(
+                    productId: product.id,
+                    price: product.cost,
+                    title: product.name,
+                    imgUrl: product.url,
+                  );
+                },
+                icon: const Icon(
+                  Icons.add_circle_outline,
+                  color: Colors.black54,
+                ),
+              ),
             ],
           ),
         ],

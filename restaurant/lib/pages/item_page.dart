@@ -1,39 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:restaurant/models/cart.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:restaurant/pages/cart_page.dart';
 
 class ItemPage extends StatelessWidget {
-  final String productId;
+  final int productId;
+  final product;
 
-  const ItemPage({Key? key, required this.productId}) : super(key: key);
+  const ItemPage({Key? key, required this.productId, this.product})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-        // title: Text(
-        //   data.title,
-        //   style: GoogleFonts.marmelad(),
-        // ),
+        title: const Text('Назад'),
       ),
       body: ListView(
         children: [
-          // Hero(
-          //   // tag: data.imgUrl,
-          //   child: Container(
-          //     height: 300,
-          //     width: double.infinity,
-          //     decoration: BoxDecoration(
-          //       // image: DecorationImage(
-          //         // image: NetworkImage(data.imgUrl),
-          //         // fit: BoxFit.cover,
-          //       ),
-          //     ),
-          //   ),
-          // ),
+          Hero(
+            tag: product.url,
+            child: Container(
+              height: 300,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(product.url),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
           Card(
             elevation: 5.0,
             margin:
@@ -42,21 +37,26 @@ class ItemPage extends StatelessWidget {
               padding: const EdgeInsets.all(30.0),
               child: Column(
                 children: [
-                  // Text(
-                    // data.title,
-                    // style: TextStyle(fontSize: 26.0),
-                  // ),
-                  Divider(),
+                  Text(
+                    product.name,
+                    style: const TextStyle(fontSize: 26.0),
+                  ),
+                  const Divider(),
+                  Text(
+                    product.composition,
+                    style: const TextStyle(fontSize: 26.0),
+                  ),
+                  const Divider(),
                   Row(
                     children: [
                       const Text(
                         'Цена ',
                         style: TextStyle(fontSize: 24.0),
                       ),
-                      // Text(
-                      //   '${data.price} ',
-                      //   style: TextStyle(fontSize: 24.0),
-                      // ),
+                      Text(
+                        '${product.cost} ',
+                        style: const TextStyle(fontSize: 24.0),
+                      ),
                     ],
                   ),
                   const Divider(),
@@ -64,43 +64,25 @@ class ItemPage extends StatelessWidget {
                   const SizedBox(
                     height: 20.0,
                   ),
-                  Provider.of<CartDataProvider>(context)
-                          .cartItems
-                          .containsKey(productId)
-                      ? Column(
-                          children: [
-                            MaterialButton(
-                                color: const Color(0xFFFDD835),
-                                child: const Text('Перейти в корзину '),
-                                onPressed: () {
-                                  Navigator.of(context)
-                                      .push(MaterialPageRoute(
-                                    builder: (context) => CartPage(),
-                                  ));
-                                }),
-                            const Text(
-                              'Товар уже доюавлен в корзину!',
-                              style: TextStyle(
-                                fontSize: 12.0,
-                                color: Colors.blueGrey,
-                              ),
-                            ),
-                          ],
-                        )
-                      : MaterialButton(
-                          color: Colors.yellow.shade600,
+                  Column(
+                    children: [
+                      MaterialButton(
+                          color: const Color(0xFFFDD835),
+                          child: const Text('Перейти в корзину '),
                           onPressed: () {
-                            Provider.of<CartDataProvider>(context,
-                                    listen: false)
-                                .addItem(
-                              // productId: data.id,
-                              // imgUrl: data.imgUrl,
-                              // title: data.title,
-                              // price: data.price,
-                            );
-                          },
-                          child: const Text('Добавить в корзину'),
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const CartPage(),
+                            ));
+                          }),
+                      const Text(
+                        'Товар уже доюавлен в корзину!',
+                        style: TextStyle(
+                          fontSize: 12.0,
+                          color: Colors.blueGrey,
+                        ),
                       ),
+                    ],
+                  )
                 ],
               ),
             ),

@@ -55,8 +55,7 @@ class _StartPageState extends State<StartPage> {
         body: Center(
           child: NotifierProvider(
             create: () => model,
-            isManagingModel: false,
-            child: const _CategoriesWidget(),
+            child: const CategoriesWidget(),
           ),
         ),
       ),
@@ -64,8 +63,8 @@ class _StartPageState extends State<StartPage> {
   }
 }
 
-class _CategoriesWidget extends StatelessWidget {
-  const _CategoriesWidget({Key? key}) : super(key: key);
+class CategoriesWidget extends StatelessWidget {
+  const CategoriesWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +120,8 @@ class _CategoriesWidget extends StatelessWidget {
                 color: Colors.transparent,
                 child: InkWell(
                   borderRadius: BorderRadius.circular(10),
-                  onTap: () => model.onCategoryTap(context, index, category.name),
+                  onTap: () =>
+                      model.onCategoryTap(context, index, category.name),
                 ),
               ),
             ],

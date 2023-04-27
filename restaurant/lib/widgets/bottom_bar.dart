@@ -36,7 +36,7 @@ class BottomBar extends StatelessWidget {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => ItemPage(
-                            productId: cartItems.keys.toList()[index],
+                            productId: int.parse(cartItems.keys.toList()[index]),
                           ),
                         ),
                       );

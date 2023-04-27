@@ -7,15 +7,16 @@ class ProductList extends ChangeNotifier {
   final _apiClient = ApiClient();
 
   final int categoryId;
-  final _product = <Product> [];
+  final _product = <Product>[];
 
   List<Product> get product => _product;
 
   ProductList({required this.categoryId});
 
   Future<void> loadDishes() async {
-    final  productResponse = (await _apiClient.fetchDishes(categoryId: categoryId));
+    final productResponse = await _apiClient.fetchDishes(categoryId: categoryId);
     _product.addAll(productResponse);
     notifyListeners();
+
   }
 }
