@@ -6,6 +6,7 @@ import 'package:restaurant/models/ordersList.dart';
 import 'package:restaurant/models/product_list.dart';
 import 'package:restaurant/pages/main_pages/menu_page.dart';
 import 'package:provider/provider.dart';
+import 'package:restaurant/pages/orders_page.dart';
 import 'package:restaurant/pages/otp_page.dart';
 import 'package:restaurant/pages/person_acc.dart';
 import 'package:restaurant/pages/main_pages/splash_screen.dart';
@@ -69,6 +70,8 @@ class MyApp extends StatelessWidget {
                 child: const PersonAccount(),
               ),
           '/auth': (context) => const AuthWidget(),
+          '/orders_page': (context) => NotifierProvider(
+              create: () => OrdersList(), child: const OrdersPage()),
         },
         initialRoute: '/',
       ),

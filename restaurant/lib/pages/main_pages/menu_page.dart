@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:restaurant/models/product_list.dart';
 import 'package:restaurant/server/provider.dart';
 import 'package:restaurant/widgets/item_card.dart';
-import '../../models/category_list.dart';
 import '../../widgets/bottom_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -38,7 +37,7 @@ class Dishes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = NotifierProvider.read<ProductList>(context);
-    final categories = NotifierProvider.watch<CategoryList>(context);
+
     if (model == null) return const SizedBox.shrink();
     return Scaffold(
       backgroundColor: Colors.grey.shade400,
