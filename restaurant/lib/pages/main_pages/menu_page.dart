@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant/models/product_list.dart';
 import 'package:restaurant/server/provider.dart';
 import 'package:restaurant/widgets/item_card.dart';
+import '../../models/category_list.dart';
 import '../../widgets/bottom_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -20,7 +21,9 @@ class Menu extends StatelessWidget {
         future: fetchDishes(context),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return Dishes(categoryName: categoryName,);
+            return Dishes(
+              categoryName: categoryName,
+            );
           } else {
             return const LoadingScreen();
           }
@@ -35,6 +38,7 @@ class Dishes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = NotifierProvider.read<ProductList>(context);
+    final categories = NotifierProvider.watch<CategoryList>(context);
     if (model == null) return const SizedBox.shrink();
     return Scaffold(
       backgroundColor: Colors.grey.shade400,
@@ -56,7 +60,7 @@ class Dishes extends StatelessWidget {
               ),
               Container(
                 padding: const EdgeInsets.all(5.0),
-                height: 270,
+                height: 290,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: model.product.length,
@@ -67,10 +71,6 @@ class Dishes extends StatelessWidget {
                     );
                   },
                 ),
-              ),
-              const Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Text('Остальные категории'),
               ),
             ],
           ),

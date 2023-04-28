@@ -12,7 +12,6 @@ class Product with ChangeNotifier {
   final int calories;
   final int cost;
   final int category_id;
-  // final String orderBy;
   final DateTime created_at;
   final DateTime updated_at;
 
@@ -23,7 +22,6 @@ class Product with ChangeNotifier {
     required this.composition,
     required this.calories,
     required this.cost,
-    // required this.orderBy,
     required this.category_id,
     required this.created_at,
     required this.updated_at,

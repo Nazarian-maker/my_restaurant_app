@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant/server/api_client.dart';
@@ -20,6 +19,7 @@ class AuthLogin extends ChangeNotifier {
   var pinText;
   late String userMail;
   static String? sessionId;
+  String? get session => sessionId;
 
   String? _errorMessage;
   String? get errorMessage => _errorMessage;
@@ -150,5 +150,15 @@ class AuthLogin extends ChangeNotifier {
       print('Ошибка смены пароля');
     }
     notifyListeners();
+  }
+
+  Future<void> createOrder(BuildContext context) async {
+    String? message;
+    try {
+       message =  await _apiClient.createOrder(waiter: 2, userToken: sessionId);
+    } catch(error) {
+      print(error);
+    }
+    print(message);
   }
 }

@@ -1,10 +1,63 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:restaurant/models/category.dart';
+import 'package:restaurant/models/getOrder.dart';
 import 'package:restaurant/models/product.dart';
 
 class ApiClient {
   final _client = HttpClient();
+
+  Future<String> createOrder({
+    required int waiter,
+    required String? userToken,
+  }) async {
+    final url = Uri.parse('http://laravel-rest.ru/api/orders');
+    final parameters = <String, dynamic>{
+      'waiter_id': waiter,
+    };
+    final request = await _client.postUrl(url);
+
+    request.headers.contentType = ContentType.json;
+
+    request.headers.add('Authorization', 'Bearer $userToken');
+
+    request.write(jsonEncode(parameters));
+
+    final response = await request.close();
+
+    final json = await response
+        .transform(utf8.decoder)
+        .toList()
+        .then((value) => value.join())
+        .then((v) => jsonDecode(v) as Map<String, dynamic>);
+
+    final message = json['message'] as String;
+
+    return message;
+  }
+
+  Future<List<Order>> getOrders({
+  required String? userToken
+}) async {
+    final url = Uri.parse('http://laravel-rest.ru/api/orders');
+    final request = await _client.getUrl(url);
+
+    request.headers.contentType = ContentType.json;
+
+    request.headers.add('Authorization', 'Bearer $userToken');
+
+    final response = await request.close();
+
+    final jsonStrings = await response.transform(utf8.decoder).toList();
+    final jsonString = jsonStrings.join();
+    final json = jsonDecode(jsonString) as List<dynamic>;
+
+    final orders = json
+        .map((dynamic e) => Order.fromJson(e as Map<String, dynamic>))
+        .toList();
+
+    return orders;
+  }
 
   Future<List<Category>> fetchCategories() async {
     final url = Uri.parse('http://laravel-rest.ru/api/categories');
@@ -14,15 +67,16 @@ class ApiClient {
     final jsonString = jsonStrings.join();
     final json = jsonDecode(jsonString) as List<dynamic>;
     final categories = json
-    .map((dynamic e) => Category.fromJson(e as Map<String, dynamic>))
-    .toList();
+        .map((dynamic e) => Category.fromJson(e as Map<String, dynamic>))
+        .toList();
     return categories;
   }
 
   Future<List<Product>> fetchDishes({
-  required int categoryId,
-}) async {
-    final url = Uri.parse('http://laravel-rest.ru/api/dishes/?category_id=$categoryId');
+    required int categoryId,
+  }) async {
+    final url =
+        Uri.parse('http://laravel-rest.ru/api/dishes/?category_id=$categoryId');
     final request = await _client.getUrl(url);
     final response = await request.close();
     final jsonStrings = await response.transform(utf8.decoder).toList();

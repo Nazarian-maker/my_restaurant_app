@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:restaurant/models/cart.dart';
+import 'package:restaurant/models/ordersList.dart';
 import 'package:restaurant/models/product_list.dart';
 import 'package:restaurant/pages/main_pages/menu_page.dart';
 import 'package:provider/provider.dart';
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<CartDataProvider>(
           create: (context) => CartDataProvider(),
         ),
+        ChangeNotifierProvider<OrdersList>(
+          create: (context) => OrdersList(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -46,7 +50,8 @@ class MyApp extends StatelessWidget {
                 create: () => AuthLogin(),
                 child: const AdminAuth(),
               ),
-          '/category_page': (context) => const StartPage(),
+          '/category_page': (context) => NotifierProvider(
+              create: () => AuthLogin(), child: const StartPage()),
           '/category_page/category_menu': (context) {
             final arguments =
                 ModalRoute.of(context)?.settings.arguments as List;

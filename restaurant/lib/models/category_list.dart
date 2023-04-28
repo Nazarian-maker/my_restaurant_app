@@ -1,11 +1,7 @@
 import 'dart:async';
-
 import 'package:restaurant/models/category.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant/models/product_list.dart';
 import 'package:restaurant/server/api_client.dart';
-
-import '../server/provider.dart';
 
 class CategoryList extends ChangeNotifier {
   final _apiClient = ApiClient();
@@ -17,7 +13,6 @@ class CategoryList extends ChangeNotifier {
     _categories.addAll(categoriesResponse);
     notifyListeners();
   }
-
 
   void onCategoryTap(BuildContext context, int index, name) {
     final id = _categories[index].id;

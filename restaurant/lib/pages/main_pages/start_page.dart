@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+import 'package:restaurant/models/auth_login.dart';
 import '../../models/category_list.dart';
+import '../../models/ordersList.dart';
 import '../../server/provider.dart';
 
 class StartPage extends StatefulWidget {
@@ -22,6 +24,9 @@ class _StartPageState extends State<StartPage> {
 
   @override
   Widget build(BuildContext context) {
+    final func = NotifierProvider.read<AuthLogin>(context);
+    final orderList = context.read<OrdersList>();
+
     return WillPopScope(
       onWillPop: () async {
         final shouldPop = await showMyDialog(context);
@@ -35,13 +40,73 @@ class _StartPageState extends State<StartPage> {
               DrawerHeader(
                 decoration: BoxDecoration(color: Colors.yellow.shade600),
                 child: const Center(
-                  child: Text('Заказы',
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
+                  child: Text(
+                    'Заказы',
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
                   ),
                 ),
               ),
+              Container(
+                decoration: BoxDecoration(color: Colors.grey.shade600),
+                child: ListTile(
+                  title: const Text(
+                    "Создать заказ",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                  onTap: () => func?.createOrder(context),
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              TextButton(
+                  onPressed: () => orderList.showOrders(),
+                  child: const Text('Перейти к списку заказов'),
+              ),
+              SizedBox(
+                height: 1000,
+                child: ListView.builder(
+                    itemExtent: 80,
+                    itemCount: orderList.orders.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final order = orderList.orders[index];
+                      return Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border:
+                                Border.all(color: Colors.black.withOpacity(0.2)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 8,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          clipBehavior: Clip.hardEdge,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text('Номер заказа ${order.num}'),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                ),
+              )
             ],
           ),
         ),
