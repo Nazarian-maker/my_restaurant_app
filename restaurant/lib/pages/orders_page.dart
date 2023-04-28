@@ -65,7 +65,17 @@ class Orders extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text('Номер заказа ${order?.num}'),
+                        Text('Номер заказа ${order?.num},'),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text('стоимость  ${order?.count},'),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        (order?.is_closed == false)
+                            ? const Text('статус: открыт')
+                            : const Text('статус: закрыт')
                       ],
                     ),
                   ),
