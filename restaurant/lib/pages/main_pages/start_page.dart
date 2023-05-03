@@ -4,7 +4,9 @@ import '../../models/category_list.dart';
 import '../../server/provider.dart';
 
 class StartPage extends StatefulWidget {
-  const StartPage({Key? key}) : super(key: key);
+  final orderNumber;
+
+  const StartPage({Key? key, this.orderNumber}) : super(key: key);
 
   @override
   State<StartPage> createState() => _StartPageState();
@@ -23,7 +25,7 @@ class _StartPageState extends State<StartPage> {
   @override
   Widget build(BuildContext context) {
     final func = NotifierProvider.read<AuthLogin>(context);
-
+    final orderNum = widget.orderNumber;
     return WillPopScope(
       onWillPop: () async {
         final shouldPop = await showMyDialog(context);
@@ -62,21 +64,24 @@ class _StartPageState extends State<StartPage> {
                 height: 30,
               ),
               TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/orders_page');
-                  },
-                  child: const Text('Перейти к списку заказов',
+                onPressed: () {
+                  Navigator.pushNamed(context, '/orders_page');
+                },
+                child: const Text(
+                  'Перейти к списку заказов',
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.black,
-                  ),),
+                  ),
+                ),
               ),
             ],
           ),
         ),
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: const Text('Категории ресторана'),
+          title: Text(
+              orderNum == null ? 'Категории ресторана' : 'Заказ $orderNum'),
           actions: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -101,7 +106,7 @@ class _StartPageState extends State<StartPage> {
         body: Center(
           child: NotifierProvider(
             create: () => model,
-            child: const CategoriesWidget(),
+            child: CategoriesWidget(orderNum: orderNum),
           ),
         ),
       ),
@@ -110,71 +115,81 @@ class _StartPageState extends State<StartPage> {
 }
 
 class CategoriesWidget extends StatelessWidget {
-  const CategoriesWidget({Key? key}) : super(key: key);
+  final orderNum;
+  const CategoriesWidget({Key? key, this.orderNum}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final model = NotifierProvider.watch<CategoryList>(context);
     if (model == null) return const SizedBox.shrink();
-    return ListView.builder(
-      itemCount: model.categories.length,
-      itemExtent: 200,
-      itemBuilder: (BuildContext context, int index) {
-        final category = model.categories[index];
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          child: Stack(
-            children: [
-              Center(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.black.withOpacity(0.2)),
-                    borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 8,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
-                  ),
-                  clipBehavior: Clip.hardEdge,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 130,
-                          width: 180,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                              image: NetworkImage(category.url),
-                              fit: BoxFit.cover,
+    if (orderNum == null) {
+      return const Text(
+        'Создайте или выберите заказ',
+        style: TextStyle(
+          fontSize: 20,
+        ),
+      );
+    } else {
+      return ListView.builder(
+        itemCount: model.categories.length,
+        itemExtent: 200,
+        itemBuilder: (BuildContext context, int index) {
+          final category = model.categories[index];
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: Stack(
+              children: [
+                Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: Colors.black.withOpacity(0.2)),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 8,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    clipBehavior: Clip.hardEdge,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 130,
+                            width: 180,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              image: DecorationImage(
+                                image: NetworkImage(category.url),
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Text(category.name.toString()),
-                    ],
+                        Text(category.name.toString()),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Material(
-                color: Colors.transparent,
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(10),
-                  onTap: () =>
-                      model.onCategoryTap(context, index, category.name),
+                Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(10),
+                    onTap: () =>
+                        model.onCategoryTap(context, index, category.name),
+                  ),
                 ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
+              ],
+            ),
+          );
+        },
+      );
+    }
   }
 }
 

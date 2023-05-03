@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:restaurant/pages/main_pages/start_page.dart';
 import '../models/ordersList.dart';
 import '../server/provider.dart';
 
@@ -36,16 +37,17 @@ class Orders extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Список заказов'),
       ),
-      body: Stack(
-        children: [
-          Center(
-            child: ListView.builder(
-              itemExtent: 80,
-              itemCount: model?.orders.length,
-              itemBuilder: (BuildContext context, int index) {
-                final order = model?.orders[index];
-                return Padding(
-                  padding: const EdgeInsets.all(5.0),
+      body: Center(
+        child: ListView.builder(
+          itemExtent: 80,
+          itemCount: model?.orders.length,
+          itemBuilder: (BuildContext context, int index) {
+            final order = model?.orders[index];
+            return Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 5.0, vertical: 10.0),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -61,7 +63,8 @@ class Orders extends StatelessWidget {
                     ),
                     clipBehavior: Clip.hardEdge,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8.0, vertical: 20.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -80,18 +83,27 @@ class Orders extends StatelessWidget {
                       ),
                     ),
                   ),
-                );
-              },
-            ),
-          ),
-          Material(
-            color: Colors.transparent,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(10),
-              onTap: () {},
-            ),
-          ),
-        ],
+                ),
+                Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(10),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return StartPage(orderNumber: order?.num,);
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
