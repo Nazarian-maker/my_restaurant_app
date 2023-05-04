@@ -8,6 +8,7 @@ class PersonAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = NotifierProvider.read<AuthLogin>(context);
+    final role = model?.getRole;
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
@@ -25,7 +26,7 @@ class PersonAccount extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: CircleAvatar(
                   radius: 53,
                   backgroundColor: Colors.grey,
@@ -58,9 +59,52 @@ class PersonAccount extends StatelessWidget {
             ],
           ),
           const SizedBox(
+            height: 10,
+          ),
+          Text(
+            '${model?.getRole}',
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 18.0,
+            ),
+          ),
+          const SizedBox(
             height: 30,
           ),
+          if (role != 'waiter')
+          _FunctionList(),
         ],
+      ),
+    );
+  }
+}
+
+class _FunctionList extends StatelessWidget {
+  _FunctionList({Key? key}) : super(key: key);
+
+  List<String> items = ["Сотрудники", "Блюда", "Категории", "Заказы", "Отчеты"];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+      ),
+      width: double.infinity,
+      child: ListView.separated(
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+            title: Text(items[index]),
+            trailing: const Icon(Icons.arrow_forward_ios_sharp),
+            onTap: () {
+              print(items[index]);
+            },
+          );
+        },
+        separatorBuilder: (BuildContext context, int index) => const Divider(),
+        itemCount: items.length,
+        shrinkWrap: true,
+        physics: const ClampingScrollPhysics(),
       ),
     );
   }

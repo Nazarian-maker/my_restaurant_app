@@ -13,7 +13,6 @@ class ApiClient {
     required String? token,
     required int? orderId,
   }) async {
-
     final url = Uri.parse('http://laravel-rest.ru/api/orders/$orderId/close');
 
     final request = await _client.putUrl(url);
@@ -40,8 +39,8 @@ class ApiClient {
     required int? dishId,
     required int? orderId,
   }) async {
-
-    final url = Uri.parse('http://laravel-rest.ru/api/orders/$dishId/$orderId/delete');
+    final url =
+        Uri.parse('http://laravel-rest.ru/api/orders/$dishId/$orderId/delete');
 
     final parameters = <String, dynamic>{
       'count': 1,
@@ -73,7 +72,6 @@ class ApiClient {
     required int? dishId,
     required int? orderId,
   }) async {
-
     final url = Uri.parse('http://laravel-rest.ru/api/orders/$dishId/$orderId');
 
     final parameters = <String, dynamic>{
@@ -130,9 +128,7 @@ class ApiClient {
     return message;
   }
 
-  Future<List<Order>> getOrders({
-  required String? userToken
-}) async {
+  Future<List<Order>> getOrders({required String? userToken}) async {
     final url = Uri.parse('http://laravel-rest.ru/api/orders');
     final request = await _client.getUrl(url);
 
@@ -216,7 +212,7 @@ class ApiClient {
     return token;
   }
 
-  Future<String> validateUserPin({
+  Future<Map<String, dynamic>> validateUserPin({
     required String pinText,
   }) async {
     final numPin = int.parse(pinText);
@@ -238,9 +234,7 @@ class ApiClient {
         .then((value) => value.join())
         .then((v) => jsonDecode(v) as Map<String, dynamic>);
 
-    final token = json['access_token'] as String;
-
-    return token;
+    return json;
   }
 
   Future<String> userLogout({

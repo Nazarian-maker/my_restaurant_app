@@ -18,8 +18,12 @@ class AuthLogin extends ChangeNotifier {
 
   var pinText;
   late String userMail;
+
   static String? sessionId;
   String? get session => sessionId;
+
+  static String? userRole;
+  String? get getRole => userRole;
 
   String? _errorMessage;
   String? get errorMessage => _errorMessage;
@@ -77,7 +81,9 @@ class AuthLogin extends ChangeNotifier {
     notifyListeners();
 
     try {
-      sessionId = await _apiClient.validateUserPin(pinText: pinText);
+      final data = await _apiClient.validateUserPin(pinText: pinText);
+      sessionId = data['access_token'];
+      userRole = data['role_id'];
     } catch (e) {
       _errorMessage = 'Неправильный пинкод!';
     }
