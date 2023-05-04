@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import '../models/auth_login.dart';
 import '../server/provider.dart';
+import 'admin_pages/categories_page.dart';
+import 'admin_pages/dishes_page.dart';
+import 'admin_pages/employees_page.dart';
+import 'admin_pages/order_page.dart';
+import 'admin_pages/reports_page.dart';
 
 class PersonAccount extends StatelessWidget {
   const PersonAccount({Key? key}) : super(key: key);
@@ -71,8 +76,7 @@ class PersonAccount extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          if (role != 'waiter')
-          _FunctionList(),
+          if (role != 'waiter') _FunctionList(),
         ],
       ),
     );
@@ -97,7 +101,43 @@ class _FunctionList extends StatelessWidget {
             title: Text(items[index]),
             trailing: const Icon(Icons.arrow_forward_ios_sharp),
             onTap: () {
-              print(items[index]);
+              switch (index) {
+                case 0:
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => EmployeesPage()),
+                  );
+                  break;
+                case 1:
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const DishesPage()),
+                  );
+                  break;
+                case 2:
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CategoriesPage()),
+                  );
+                  break;
+                case 3:
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const OrderPage()),
+                  );
+                  break;
+                case 4:
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ReportsPage()),
+                  );
+                  break;
+                default:
+                  break;
+              }
             },
           );
         },

@@ -3,9 +3,33 @@ import 'dart:io';
 import 'package:restaurant/models/category/category.dart';
 import 'package:restaurant/models/orders/getOrder.dart';
 import 'package:restaurant/models/product/product.dart';
+import 'package:restaurant/models/users/users.dart';
 
 class ApiClient {
   final _client = HttpClient();
+
+  //-----------------------------------------Users----------------------------------
+
+  Future<List<Users>> getUsers({required String? userToken}) async {
+    final url = Uri.parse('http://laravel-rest.ru/api/users');
+    final request = await _client.getUrl(url);
+
+    request.headers.contentType = ContentType.json;
+
+    request.headers.add('Authorization', 'Bearer $userToken');
+
+    final response = await request.close();
+
+    final jsonStrings = await response.transform(utf8.decoder).toList();
+    final jsonString = jsonStrings.join();
+    final json = jsonDecode(jsonString) as List<dynamic>;
+
+    final users = json
+        .map((dynamic e) => Users.fromJson(e as Map<String, dynamic>))
+        .toList();
+
+    return users;
+  }
 
   //-----------------------------------------Orders----------------------------------
 

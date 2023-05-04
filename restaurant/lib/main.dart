@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:restaurant/models/cart.dart';
 import 'package:restaurant/models/orders/ordersList.dart';
 import 'package:restaurant/models/product/product_list.dart';
+import 'package:restaurant/models/users/users_list.dart';
 import 'package:restaurant/pages/main_pages/menu_page.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant/pages/orders_page.dart';
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
     ));
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<UsersList>(
+          create: (context) => UsersList(),
+        ),
         ChangeNotifierProvider<CartDataProvider>(
           create: (context) => CartDataProvider(),
         ),
