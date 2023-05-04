@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:restaurant/models/category.dart';
+import 'package:restaurant/models/category/category.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant/server/api_client.dart';
 
@@ -16,6 +16,7 @@ class CategoryList extends ChangeNotifier {
 
   void onCategoryTap(BuildContext context, int index, name) {
     final id = _categories[index].id;
-    Navigator.of(context).pushNamed('/category_page/category_menu', arguments: [id, name]);
+    Navigator.of(context).pushNamed('/category_page/category_menu',
+        arguments: [id, name]);
   }
 }

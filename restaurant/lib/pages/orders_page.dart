@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant/models/orders/order_changes.dart';
 import 'package:restaurant/pages/main_pages/start_page.dart';
-import '../models/ordersList.dart';
+import '../models/orders/ordersList.dart';
 import '../server/provider.dart';
 
 class OrdersPage extends StatelessWidget {
@@ -32,6 +34,7 @@ class Orders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = NotifierProvider.watch<OrdersList>(context);
+    final getter = context.read<OrderChanges>();
 
     return Scaffold(
       appBar: AppBar(
@@ -72,7 +75,7 @@ class Orders extends StatelessWidget {
                           const SizedBox(
                             width: 10,
                           ),
-                          Text('стоимость  ${order?.count},'),
+                          Text('количество  ${order?.count},'),
                           const SizedBox(
                             width: 10,
                           ),
@@ -89,11 +92,14 @@ class Orders extends StatelessWidget {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(10),
                     onTap: () {
+                      getter.getOrder(order?.id);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return StartPage(orderNumber: order?.num,);
+                            return StartPage(
+                              orderNumber: order?.num,
+                            );
                           },
                         ),
                       );

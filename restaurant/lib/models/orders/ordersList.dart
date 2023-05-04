@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/models/auth_login.dart';
-import 'package:restaurant/models/getOrder.dart';
-import '../server/api_client.dart';
+import 'package:restaurant/models/orders/getOrder.dart';
+import '../../server/api_client.dart';
 
 class OrdersList  extends ChangeNotifier {
   final _apiClient = ApiClient();

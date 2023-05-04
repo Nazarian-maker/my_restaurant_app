@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:restaurant/models/cart.dart';
-import 'package:restaurant/models/ordersList.dart';
-import 'package:restaurant/models/product_list.dart';
+import 'package:restaurant/models/orders/ordersList.dart';
+import 'package:restaurant/models/product/product_list.dart';
 import 'package:restaurant/pages/main_pages/menu_page.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant/pages/orders_page.dart';
 import 'package:restaurant/pages/otp_page.dart';
 import 'package:restaurant/pages/person_acc.dart';
 import 'package:restaurant/pages/main_pages/splash_screen.dart';
-import 'package:restaurant/pages/admin_auth_page.dart';
+import 'package:restaurant/pages/main_pages/admin_auth_page.dart';
 import 'package:restaurant/pages/main_pages/auth_page.dart';
 import 'package:restaurant/pages/main_pages/start_page.dart';
 import 'package:restaurant/server/provider.dart';
 import 'models/auth_login.dart';
+import 'models/orders/order_changes.dart';
 
 void main() => runApp(const MyApp());
 
@@ -33,6 +34,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<OrdersList>(
           create: (context) => OrdersList(),
+        ),
+        ChangeNotifierProvider<OrderChanges>(
+          create: (context) => OrderChanges(),
         ),
       ],
       child: MaterialApp(

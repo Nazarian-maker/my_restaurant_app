@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant/models/cart.dart';
+import 'package:restaurant/models/orders/order_changes.dart';
 
 import '../pages/item_page.dart';
 
@@ -16,12 +17,15 @@ class CartItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = context.watch<OrderChanges>();
+
     return ListTile(
       leading: InkWell(
         onTap: () => {
-          Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ItemPage(
-          productId: cartData.cartItems.keys.toList()[index],
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => ItemPage(
+                productId: cartData.cartItems.keys.toList()[index],
               ),
             ),
           ),
@@ -47,6 +51,7 @@ class CartItem extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () {
+              model.subOne();
               Provider.of<CartDataProvider>(context, listen: false)
                   .updateItemsSubOne(cartData.cartItems.keys.toList()[index]);
             },
@@ -55,6 +60,7 @@ class CartItem extends StatelessWidget {
           Text('x${cartData.cartItems.values.toList()[index].number}'),
           IconButton(
             onPressed: () {
+              model.addOne();
               Provider.of<CartDataProvider>(context, listen: false)
                   .updateItemsAddOne(cartData.cartItems.keys.toList()[index]);
             },

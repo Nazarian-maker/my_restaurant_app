@@ -1,11 +1,105 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:restaurant/models/category.dart';
-import 'package:restaurant/models/getOrder.dart';
-import 'package:restaurant/models/product.dart';
+import 'package:restaurant/models/category/category.dart';
+import 'package:restaurant/models/orders/getOrder.dart';
+import 'package:restaurant/models/product/product.dart';
 
 class ApiClient {
   final _client = HttpClient();
+
+  //-----------------------------------------Orders----------------------------------
+
+  Future<String> closeOrder({
+    required String? token,
+    required int? orderId,
+  }) async {
+
+    final url = Uri.parse('http://laravel-rest.ru/api/orders/$orderId/close');
+
+    final request = await _client.putUrl(url);
+
+    request.headers.contentType = ContentType.json;
+
+    request.headers.add('Authorization', 'Bearer $token');
+
+    final response = await request.close();
+
+    final json = await response
+        .transform(utf8.decoder)
+        .toList()
+        .then((value) => value.join())
+        .then((v) => jsonDecode(v) as Map<String, dynamic>);
+
+    final message = json['message'] as String;
+
+    return message;
+  }
+
+  Future<String> subToOrder({
+    required String? token,
+    required int? dishId,
+    required int? orderId,
+  }) async {
+
+    final url = Uri.parse('http://laravel-rest.ru/api/orders/$dishId/$orderId/delete');
+
+    final parameters = <String, dynamic>{
+      'count': 1,
+    };
+
+    final request = await _client.putUrl(url);
+
+    request.headers.contentType = ContentType.json;
+
+    request.headers.add('Authorization', 'Bearer $token');
+
+    request.write(jsonEncode(parameters));
+
+    final response = await request.close();
+
+    final json = await response
+        .transform(utf8.decoder)
+        .toList()
+        .then((value) => value.join())
+        .then((v) => jsonDecode(v) as Map<String, dynamic>);
+
+    final message = json['message'] as String;
+
+    return message;
+  }
+
+  Future<String> addToOrder({
+    required String? token,
+    required int? dishId,
+    required int? orderId,
+  }) async {
+
+    final url = Uri.parse('http://laravel-rest.ru/api/orders/$dishId/$orderId');
+
+    final parameters = <String, dynamic>{
+      'count': 1,
+    };
+
+    final request = await _client.postUrl(url);
+
+    request.headers.contentType = ContentType.json;
+
+    request.headers.add('Authorization', 'Bearer $token');
+
+    request.write(jsonEncode(parameters));
+
+    final response = await request.close();
+
+    final json = await response
+        .transform(utf8.decoder)
+        .toList()
+        .then((value) => value.join())
+        .then((v) => jsonDecode(v) as Map<String, dynamic>);
+
+    final message = json['message'] as String;
+
+    return message;
+  }
 
   Future<String> createOrder({
     required int waiter,
@@ -59,6 +153,8 @@ class ApiClient {
     return orders;
   }
 
+  //-----------------------------------------Category----------------------------------
+
   Future<List<Category>> fetchCategories() async {
     final url = Uri.parse('http://laravel-rest.ru/api/categories');
     final request = await _client.getUrl(url);
@@ -71,6 +167,8 @@ class ApiClient {
         .toList();
     return categories;
   }
+
+  //-----------------------------------------Dishes----------------------------------
 
   Future<List<Product>> fetchDishes({
     required int categoryId,
@@ -87,6 +185,8 @@ class ApiClient {
         .toList();
     return dishes;
   }
+
+  //--------------------------------------------Auth--------------------------------------
 
   Future<String> validateUser({
     required String email,

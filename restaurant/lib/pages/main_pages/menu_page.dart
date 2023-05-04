@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/models/product_list.dart';
+import 'package:restaurant/models/product/product_list.dart';
 import 'package:restaurant/server/provider.dart';
 import 'package:restaurant/widgets/item_card.dart';
 import '../../widgets/bottom_bar.dart';
@@ -32,12 +32,12 @@ class Menu extends StatelessWidget {
 
 class Dishes extends StatelessWidget {
   final categoryName;
+
   const Dishes({Key? key, this.categoryName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final model = NotifierProvider.read<ProductList>(context);
-
     if (model == null) return const SizedBox.shrink();
     return Scaffold(
       backgroundColor: Colors.grey.shade400,

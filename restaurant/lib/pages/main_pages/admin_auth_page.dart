@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/models/auth_login.dart';
 import 'package:restaurant/server/provider.dart';
-import 'pass_reset/password_forgot.dart';
+import '../pass_reset/password_forgot.dart';
 
 class AdminAuth extends StatelessWidget {
   const AdminAuth({Key? key}) : super(key: key);

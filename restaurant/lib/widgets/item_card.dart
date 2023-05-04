@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant/models/cart.dart';
+import 'package:restaurant/models/orders/order_changes.dart';
 import 'package:restaurant/pages/item_page.dart';
 
 class ItemCard extends StatelessWidget {
@@ -9,6 +10,8 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final getter = context.watch<OrderChanges>();
+
     return Container(
       width: 150,
       padding: const EdgeInsets.all(4.0),
@@ -58,6 +61,8 @@ class ItemCard extends StatelessWidget {
               Text('${product.cost}'),
               IconButton(
                 onPressed: () {
+                  getter.getProduct(product.id);
+                  getter.addOne();
                   Provider.of<CartDataProvider>(context, listen: false).addItem(
                     productId: '${product.id}',
                     price: product.cost,

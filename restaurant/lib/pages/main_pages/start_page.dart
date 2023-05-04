@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/models/auth_login.dart';
-import '../../models/category_list.dart';
+import '../../models/category/category_list.dart';
 import '../../server/provider.dart';
 
 class StartPage extends StatefulWidget {
